@@ -6,7 +6,7 @@ GO
 USE [METscape]
 GO
 
-DROP TABLE IF EXISTS [Subscription];
+DROP TABLE IF EXISTS [Friendship];
 DROP TABLE IF EXISTS [Comment];
 DROP TABLE IF EXISTS [Post];
 DROP TABLE IF EXISTS [UserProfile];
@@ -14,8 +14,10 @@ DROP TABLE IF EXISTS [UserProfile];
 CREATE TABLE [Post] (
   [Id] integer PRIMARY KEY identity NOT NULL,
   [MetId] integer NOT NULL,
+  [DateCreated] datetime NOT NULL, 
   [UserProfileId] integer NOT NULL,
-  [DateCreated] datetime NOT NULL 
+  [Title] nvarchar(255) NOT NULL,
+  [Content] nvarchar(255) NOT NULL  
 )
 GO
 
@@ -25,7 +27,7 @@ CREATE TABLE [UserProfile] (
   [LastName] nvarchar(255) NOT NULL,
   [UserName] nvarchar(255) NOT NULL,
   [Email] nvarchar(255) NOT NULL,
-  [FireBaseId] nvarchar NOT NULL
+  [FireBaseId] nvarchar(255) NOT NULL
 )
 GO
 
@@ -40,8 +42,9 @@ GO
 
 CREATE TABLE [Friendship] (
   [Id] integer PRIMARY KEY identity NOT NULL,
-  [SubscriberId] integer NOT NULL,
-  [ProviderId] integer NOT NULL
+  [InitiatorId] integer NOT NULL,
+  [ApproverId] integer NOT NULL,
+  [IsApproved] bit NOT NULL
 )
 GO
 
@@ -51,36 +54,36 @@ ALTER TABLE [Comment] ADD FOREIGN KEY ([PostId]) REFERENCES [Post] ([Id])
 GO
 ALTER TABLE [Comment] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
 GO
-ALTER TABLE [Subscription] ADD FOREIGN KEY ([SubscriberId]) REFERENCES [UserProfile] ([Id])
+ALTER TABLE [Friendship] ADD FOREIGN KEY ([InitiatorId]) REFERENCES [UserProfile] ([Id])
 GO
-ALTER TABLE [Subscription] ADD FOREIGN KEY ([ProviderId]) REFERENCES [UserProfile] ([Id])
+ALTER TABLE [Friendship] ADD FOREIGN KEY ([ApproverId]) REFERENCES [UserProfile] ([Id])
 GO
 
 SET IDENTITY_INSERT [UserProfile] ON
 INSERT INTO [UserProfile]
-  ([Id], [Name], [Email], [ImageUrl], [Bio], [DateCreated])
+  ([Id], [FirstName], [LastName], [UserName], [Email], [FireBaseId])
 VALUES 
-  (1, 'Oliver Hardy', 'olie@email.com', null, null, '06-21-2020');
+  (1, 'Super','Admin', 'OGAdmin', 'admin@email.com', 'ThIsIdNoTrEaL');
 INSERT INTO [UserProfile]
-  ([Id], [Name], [Email], [ImageUrl], [Bio], [DateCreated])
+  ([Id], [FirstName], [LastName], [UserName], [Email], [FireBaseId])
 VALUES 
-  (2, 'Stan Laurel', 'stan@email.com', null, null, '04-20-2020');
+  (2, 'Tim','Taylor', 'Toolman', 'tim@email.com', 'ThIsIdNoTrEaL');
 SET IDENTITY_INSERT [UserProfile] OFF
-SET IDENTITY_INSERT [Post] ON
 
+SET IDENTITY_INSERT [Post] ON
 INSERT INTO [Post]
-  ([Id], [Title], [ImageUrl], [Caption], [UserProfileId], [DateCreated])
+  ([Id], [MetId], [Title], [Content], [UserProfileId], [DateCreated])
 VALUES
-  (1, 'Wait...what?', 'https://media.giphy.com/media/j609LflrIXInkLNMts/giphy.gif', null, 1, '06-22-2020'),
-  (2, 'Stop that', 'https://media.giphy.com/media/jroyKTvw89Dh3J1sss/giphy.gif', 'There''s this guy. He''s in a hall. He want''s you to stop', 1, '06-23-2020'),
-  (3, 'Paintball', 'https://media.giphy.com/media/l2R09jc6eZIlfXKlW/giphy.gif', 'I believe I will win', 1, '06-29-2020'),
-  (4, 'People!', 'https://media.giphy.com/media/u8mNsDNfHCTUQ/giphy.gif', 'animals are better', 1, '06-29-2020'),
-  (5, 'Laughter', 'https://media.giphy.com/media/5vGkcQV9AfDPy/giphy.gif', null, 2, '04-20-2020');
+  (1, 436050, 'This is amazing!', 'This truly is just amazing! I am so impressed!', 1, '06-22-2020'),
+  (2, 436051, 'So Clever!', 'Can you believe how CLEVER this artist was? He is my favorite', 2, '06-23-2020'),
+  (3, 436052, 'My Dream Piece', 'If I could have any piece from the musem to hang on my wall, this would be it', 1, '06-29-2020'),
+  (4, 436053, 'How did they make this?!', 'This seems extraordinarily complex! How do you suppose they made this?',2, '06-29-2020'),
+  (5, 436054, 'Coolest item of the day!', 'Of all of the things I saw today, THIS is the coolest of all!', 2, '04-20-2020');
 SET IDENTITY_INSERT [Post] OFF
 
 SET IDENTITY_INSERT [Comment] ON
 INSERT INTO [Comment]
-  ([Id], [UserProfileId], [PostId], [Message])
+  ([Id], [UserProfileId], [PostId], [Content], [DateCreated])
 VALUES
-  (1, 2, 1, 'A comment is a comment is a comment');
+  (1, 2, 1, 'Can you believe they did this with only the primitive tools they had for this back then?!', '06-23-2020');
 SET IDENTITY_INSERT [Comment] OFF
