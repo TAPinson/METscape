@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
-    Collapse,
     Navbar,
     NavbarToggler,
     NavbarBrand,
@@ -43,8 +42,6 @@ const AppHeader = () => {
                     />
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
-
-
                 <Nav className="ml-auto" navbar>
                     {user ? (
                         <>
@@ -75,9 +72,8 @@ const AppHeader = () => {
                                     </NavLink>
                             </NavItem>
                             <NavbarText>
-                                Welcome {user.userName}
+                                Welcome {user.userName}!
                             </NavbarText>
-
                         </>
                     ) : (
                             <>
@@ -93,9 +89,7 @@ const AppHeader = () => {
                                 </NavItem>
                             </>
                         )}
-
                 </Nav>
-
             </Navbar>
         </div>
     );
