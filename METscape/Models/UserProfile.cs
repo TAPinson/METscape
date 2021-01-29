@@ -28,6 +28,6 @@ namespace METscape.Models
 
         [Required]
         [MaxLength(28)]
-        public string FirebaseId { get; set; }
+        public string FirebaseUserId { get; set; }
     }
 }
