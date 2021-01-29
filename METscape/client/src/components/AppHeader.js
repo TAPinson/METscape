@@ -32,14 +32,14 @@ const AppHeader = () => {
         <div>
             <Navbar color="dark" dark expand="md">
                 <NavbarBrand tag={Link} to="/">
-                    <img
+                    {/* <img
                         id="header-logo"
                         src="/placeholder.png"
                         width="30"
                         height="30"
                         className="mr-2"
                         alt="Logo"
-                    />
+                    /> */}
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Nav className="ml-auto" navbar>

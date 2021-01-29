@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import {
-    UserProfileContext,
-    UserProfileProvider,
-} from '../providers/UserProfileProvider';
+import { UserProfileContext } from '../providers/UserProfileProvider';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';

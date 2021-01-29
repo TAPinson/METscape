@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, createContext } from "react";
 
 
 export const PostContext = createContext();
@@ -20,7 +20,7 @@ export function PostProvider(props) {
         console.log("beep")
         fetch(`${apiUrl}`)
             .then((res) => res.json())
-            .then(setPosts(posts))
+            .then((resp) => setPosts(resp))
     }
 
     return (
