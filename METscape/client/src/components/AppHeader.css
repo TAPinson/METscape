@@ -1,0 +1,13 @@
+.pointer {
+    cursor: pointer;
+  }
+
+.navbar-nav > li{
+  margin-right:5rem;
+
+}
+
+.navbar-spacer {
+    width: 1000px;
+    
+}

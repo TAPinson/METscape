@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import ApplicationViews from "./components/ApplicationViews";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AppHeader from "./components/AppHeader";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <UserProfileProvider>
 
         <Router>
-          {/* <AppHeader /> */}
+          <AppHeader />
           <ApplicationViews />
         </Router>
 
