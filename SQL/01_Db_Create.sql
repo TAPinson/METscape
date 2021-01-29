@@ -27,7 +27,7 @@ CREATE TABLE [UserProfile] (
   [LastName] nvarchar(255) NOT NULL,
   [UserName] nvarchar(255) NOT NULL,
   [Email] nvarchar(255) NOT NULL,
-  [FireBaseId] nvarchar(255) NOT NULL
+  [FirebaseUserId] nvarchar(255) NOT NULL
 )
 GO
 
@@ -61,13 +61,13 @@ GO
 
 SET IDENTITY_INSERT [UserProfile] ON
 INSERT INTO [UserProfile]
-  ([Id], [FirstName], [LastName], [UserName], [Email], [FireBaseId])
+  ([Id], [FirstName], [LastName], [UserName], [Email], [FirebaseUserId])
 VALUES 
-  (1, 'Super','Admin', 'OGAdmin', 'admin@email.com', 'ThIsIdNoTrEaL');
+  (1, 'Super','Admin', 'OGAdmin', 'admin@email.com', 'vZC6MejOUtdXBg4e6n8M3anTKmH3');
 INSERT INTO [UserProfile]
-  ([Id], [FirstName], [LastName], [UserName], [Email], [FireBaseId])
+  ([Id], [FirstName], [LastName], [UserName], [Email], [FirebaseUserId])
 VALUES 
-  (2, 'Tim','Taylor', 'Toolman', 'tim@email.com', 'ThIsIdNoTrEaL');
+  (2, 'Tim','Taylor', 'Toolman', 'tim@email.com', 'vCvRa2MeSpO8X5wbZFLIxKga30k2');
 SET IDENTITY_INSERT [UserProfile] OFF
 
 SET IDENTITY_INSERT [Post] ON
