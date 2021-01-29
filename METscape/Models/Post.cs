@@ -10,7 +10,7 @@ namespace METscape.Models
     {
         public int Id { get; set; }
 
-        public int MedId { get; set; }
+        public int MetId { get; set; }
 
         public DateTime DateCreated { get; set; }
 
