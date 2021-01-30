@@ -1,6 +1,7 @@
 import './App.css';
 import { UserProfileProvider } from "./providers/UserProfileProvider";
 import { PostProvider } from "./providers/PostProvider";
+import { ExhibitProvider } from "./providers/ExhibitProvider";
 import { BrowserRouter as Router } from "react-router-dom";
 import ApplicationViews from "./components/ApplicationViews";
 import { ToastContainer } from "react-toastify";
@@ -12,12 +13,14 @@ function App() {
     <div className="App">
       <ToastContainer position="bottom-right" hideProgressBar />
       <UserProfileProvider>
-        <PostProvider>
-          <Router>
-            <AppHeader />
-            <ApplicationViews />
-          </Router>
-        </PostProvider>
+        <ExhibitProvider>
+          <PostProvider>
+            <Router>
+              <AppHeader />
+              <ApplicationViews />
+            </Router>
+          </PostProvider>
+        </ExhibitProvider>
       </UserProfileProvider>
     </div>
   );
