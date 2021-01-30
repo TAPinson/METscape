@@ -11,9 +11,6 @@ const Home = () => {
         getExhibitById(436050)
     }, []);
 
-    console.log(post)
-    console.log(exhibit)
-
     return (
         <div >
             {post.title} <br />
