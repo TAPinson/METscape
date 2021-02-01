@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { UserProfileContext } from '../providers/UserProfileProvider';
+import { PostContext, PostProvider } from "../providers/PostProvider"
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import { CategoryBrowser } from "../pages/CategoryBrowser"
+import DepartmentFeed from '../pages/DepartmentFeed';
+import { ExhibitProvider } from '../providers/ExhibitProvider';
 
 
 
@@ -11,15 +15,22 @@ const ApplicationViews = () => {
     const { isLoggedIn, isAdmin } = useContext(UserProfileContext);
 
     const authLevel = () => {
-        if (isLoggedIn && isAdmin()) {
+        if (isLoggedIn) {
             return (
                 <>
-                    {/* <TagProvider>
-                        <Route path="/tags">
-                            <TagManager />
+                    <PostProvider>
+                        <Route path="/categorybrowser">
+                            <CategoryBrowser />
                         </Route>
-                    </TagProvider>
-                    <UserProfileProvider>
+                    </PostProvider>
+                    <PostProvider>
+                        <ExhibitProvider>
+                            <Route path="/departmentfeed/:departmentId" exact>
+                                <DepartmentFeed />
+                            </Route>
+                        </ExhibitProvider>
+                    </PostProvider>
+                    {/* <UserProfileProvider>
                         <Route path="/users">
                             <UserManager />
                         </Route>

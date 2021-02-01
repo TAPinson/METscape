@@ -51,7 +51,7 @@ const AppHeader = () => {
                                     </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink to="/browser" tag={Link}>
+                                <NavLink to="/categorybrowser" tag={Link}>
                                     Browser
                                     </NavLink>
                             </NavItem>

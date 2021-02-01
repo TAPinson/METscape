@@ -8,6 +8,10 @@ export function ExhibitProvider(props) {
     const singleExhibitUrl = "https://collectionapi.metmuseum.org/public/collection/v1/objects";
 
     const [exhibit, setExhibit] = useState([]);
+    const [exhibits, setExhibits] = useState([]);
+    const [departments, setDepartments] = useState([]);
+    const [department, setDepartment] = useState([]);
+    const [departmentExhibits, setDepartmentExhibits] = useState([]);
 
     const getExhibitById = (id) => {
         fetch(`${singleExhibitUrl}/${id}`)
@@ -15,12 +19,43 @@ export function ExhibitProvider(props) {
             .then((resp) => setExhibit(resp))
     }
 
+    const exhibitsCompiler = (id) => {
+        //console.log(id)
+        return fetch(`${singleExhibitUrl}/${id}`)
+            .then((res) => res.json())
+        // .then((resp) => {
+        //     //onsole.log(resp)
+        //     return resp
+        // })
+    }
+
+    const getAllDepartments = () => {
+        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/departments`)
+            .then((res) => res.json())
+            .then((resp) => setDepartments(resp.departments))
+    }
+
+    const getExhibitsByDepartment = (id) => {
+        fetch(`https:/collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=${id}`)
+            .then((res) => res.json())
+            .then((resp) => setExhibits(resp.objectIDs))
+    }
+
     return (
         <ExhibitContext.Provider
             value={{
                 exhibit,
                 setExhibit,
-                getExhibitById
+                getExhibitById,
+                getAllDepartments,
+                departments,
+                setDepartments,
+                department,
+                setDepartment,
+                getExhibitsByDepartment,
+                exhibits,
+                setExhibits,
+                exhibitsCompiler
             }}
         >
             {props.children}
