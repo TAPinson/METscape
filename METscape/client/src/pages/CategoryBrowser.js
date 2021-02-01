@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 
 export const CategoryBrowser = () => {
-    const { departments, getAllDepartments, department, setDepartment } = useContext(ExhibitContext);
+    const { departments, getAllDepartments } = useContext(ExhibitContext);
     const history = useHistory();
 
     useEffect(() => {
@@ -20,7 +20,6 @@ export const CategoryBrowser = () => {
                     <div className="department-card"
                         key={department.departmentId}
                         onClick={() => {
-                            setDepartment(department.departmentId)
                             history.push(`/departmentfeed/${department.departmentId}`)
                         }}>
                         {department.displayName} - {department.departmentId}

@@ -9,27 +9,21 @@ const DepartmentFeed = () => {
     const { departmentId } = useParams();
     const [postsToDisplay, setPostsToDisplay] = useState([])
 
-    let emptyArray = []
-
     useEffect(() => {
         getExhibitsByDepartment(departmentId)
-        pagifyExhibits()
 
+        let pageOne = exhibits.slice(0, 20)
 
-    }, []);
-
-    const pagifyExhibits = () => {
-        let pageOne = exhibits.slice(0, 3)
-
+        let emptyArray = []
         pageOne.map((selection) => {
             exhibitsCompiler(selection)
                 .then((res) => {
                     emptyArray.push(res)
-                    setPostsToDisplay(emptyArray)
                 })
         })
+        setPostsToDisplay(emptyArray)
 
-    }
+    }, []);
 
     return (
         <div >

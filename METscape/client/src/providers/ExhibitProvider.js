@@ -20,13 +20,8 @@ export function ExhibitProvider(props) {
     }
 
     const exhibitsCompiler = (id) => {
-        //console.log(id)
         return fetch(`${singleExhibitUrl}/${id}`)
             .then((res) => res.json())
-        // .then((resp) => {
-        //     //onsole.log(resp)
-        //     return resp
-        // })
     }
 
     const getAllDepartments = () => {
