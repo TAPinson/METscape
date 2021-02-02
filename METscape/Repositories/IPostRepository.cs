@@ -8,6 +8,7 @@ namespace METscape.Repositories
 {
     public interface IPostRepository
     {
+        void Add(Post post);
         Post GetPostById(int id);
     }
 }

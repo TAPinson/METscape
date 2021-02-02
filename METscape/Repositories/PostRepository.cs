@@ -46,6 +46,30 @@ namespace METscape.Repositories
             }
         }
 
+        public void Add(Post post)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    INSERT INTO Post (MetId, DateCreated, UserProfileId, Title, Content)
+                    OUTPUT INSERTED.ID
+                    VALUES (@metId, @dateCreated, @userProfileId, @title, @content)";
+
+                    cmd.Parameters.AddWithValue("@metId", post.MetId);
+                    cmd.Parameters.AddWithValue("@dateCreated", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@userProfileId", post.UserProfileId);
+                    cmd.Parameters.AddWithValue("@title", post.Title);
+                    cmd.Parameters.AddWithValue("@content", post.Content);
+
+                    int id = (int)cmd.ExecuteScalar();
+                    post.Id = id;
+                }
+            }
+        }
+
 
     }
 }

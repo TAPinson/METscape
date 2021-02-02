@@ -1,4 +1,5 @@
-﻿using METscape.Repositories;
+﻿using METscape.Models;
+using METscape.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,6 +31,13 @@ namespace METscape.Controllers
             }
 
             return Ok(post);
+        }
+
+        [HttpPost]
+        public IActionResult AddPost(Post post)
+        {
+            _postRepo.Add(post);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

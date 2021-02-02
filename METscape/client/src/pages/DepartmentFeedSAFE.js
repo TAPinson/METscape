@@ -5,32 +5,20 @@ import ExhibitCard from "../components/ExhibitCard"
 import "./DepartmentFeed.css"
 
 const DepartmentFeed = () => {
-    const { getExhibitsByDepartment, exhibits, exhibitsCompiler } = useContext(ExhibitContext);
+    const { getExhibitsByDepartment, exhibits } = useContext(ExhibitContext);
     const { departmentId } = useParams();
     const [postsToDisplay, setPostsToDisplay] = useState([])
 
     useEffect(() => {
         getExhibitsByDepartment(departmentId)
-
-        let pageOne = exhibits.slice(0, 20)
-        let emptyArray = []
-        pageOne.map((selection) => {
-            exhibitsCompiler(selection)
-                .then((res) => {
-                    emptyArray.push(res)
-                })
-        })
-        setPostsToDisplay(emptyArray)
-
     }, []);
 
     return (
         <div >
             {
-                postsToDisplay.map((exhibit) => {
-                    console.log(exhibit)
+                exhibits.map((exhibitObj) => {
                     return (
-                        <ExhibitCard key={exhibit.objectId} exhibit={exhibit} />
+                        <ExhibitCard key={exhibitObj.objectID} exhibit={exhibitObj} />
                     )
                 })
             }

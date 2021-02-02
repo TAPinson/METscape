@@ -17,10 +17,23 @@ export function PostProvider(props) {
     }
 
     const getAllPosts = () => {
-        console.log("beep")
         fetch(`${apiUrl}`)
             .then((res) => res.json())
             .then((resp) => setPosts(resp))
+    }
+
+    const addPost = (post) => {
+        const userId = JSON.parse(localStorage.getItem('userProfile')).id;
+        post.userProfileId = userId
+        console.log(post)
+
+        return fetch(`${apiUrl}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        })
     }
 
     return (
@@ -31,7 +44,8 @@ export function PostProvider(props) {
                 setPost,
                 setPosts,
                 getAllPosts,
-                posts
+                posts,
+                addPost
             }}
         >
             {props.children}

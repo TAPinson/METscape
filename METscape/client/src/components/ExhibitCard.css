@@ -1,9 +1,25 @@
 .exhibit-card {
-    
     border: 1px solid;
     width: 60%;
 }
 
 .exhibit-card-image {
     width: 20em;
+}
+
+.post-this-button {
+    width: 10%;
+    border: 1px solid;
+    border-radius: 12px;
+    margin: 1rem;
+    background-color: blanchedalmond;
+    cursor: pointer;
+}
+
+.postModal {
+    margin: auto;
+    margin-top: 25em;
+    width: 30%;
+    background-color: white;
+    border: 1px solid;
 }
