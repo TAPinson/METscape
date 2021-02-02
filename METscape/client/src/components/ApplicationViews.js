@@ -8,6 +8,7 @@ import Register from '../pages/Register';
 import { CategoryBrowser } from "../pages/CategoryBrowser"
 import DepartmentFeed from '../pages/DepartmentFeed';
 import { ExhibitProvider } from '../providers/ExhibitProvider';
+import MyExhibits from '../pages/MyExhibits';
 
 
 
@@ -27,6 +28,13 @@ const ApplicationViews = () => {
                         <ExhibitProvider>
                             <Route path="/departmentfeed/:departmentId" exact>
                                 <DepartmentFeed />
+                            </Route>
+                        </ExhibitProvider>
+                    </PostProvider>
+                    <PostProvider>
+                        <ExhibitProvider>
+                            <Route path="/myexhibits" exact>
+                                <MyExhibits />
                             </Route>
                         </ExhibitProvider>
                     </PostProvider>

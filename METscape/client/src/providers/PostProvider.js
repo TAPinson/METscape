@@ -22,6 +22,12 @@ export function PostProvider(props) {
             .then((resp) => setPosts(resp))
     }
 
+    const getPostsByUser = (id) => {
+        fetch(`${apiUrl}/userposts/${id}`)
+            .then((res) => res.json())
+            .then((resp) => setPosts(resp))
+    }
+
     const addPost = (post) => {
         const userId = JSON.parse(localStorage.getItem('userProfile')).id;
         post.userProfileId = userId
@@ -45,7 +51,8 @@ export function PostProvider(props) {
                 setPosts,
                 getAllPosts,
                 posts,
-                addPost
+                addPost,
+                getPostsByUser
             }}
         >
             {props.children}

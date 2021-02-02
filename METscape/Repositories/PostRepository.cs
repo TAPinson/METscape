@@ -70,6 +70,39 @@ namespace METscape.Repositories
             }
         }
 
+        public List<Post> GetPostsByUser(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT Id, MetId, DateCreated, UserProfileId, Title, Content
+                    FROM Post
+                    WHERE UserProfileId = @userId";
+
+                    cmd.Parameters.AddWithValue("@userId", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    var posts = new List<Post>();
+                    while (reader.Read())
+                    {
+                        var post = new Post()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            MetId = reader.GetInt32(reader.GetOrdinal("MetId")),
+                            DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
+                            UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+                            Title = reader.GetString(reader.GetOrdinal("Title")),
+                            Content = reader.GetString(reader.GetOrdinal("Content"))
+                        };
+                        posts.Add(post);
+                    }
+                    reader.Close();
+                    return posts;
+                }
+            }
+        }
 
     }
 }

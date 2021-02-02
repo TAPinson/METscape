@@ -10,5 +10,6 @@ namespace METscape.Repositories
     {
         void Add(Post post);
         Post GetPostById(int id);
+        List<Post> GetPostsByUser(int userId);
     }
 }

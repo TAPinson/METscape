@@ -33,6 +33,22 @@ namespace METscape.Controllers
             return Ok(post);
         }
 
+        [HttpGet("userposts/{id}")]
+        public IActionResult GetByUserId(int id)
+        {
+            var posts = _postRepo.GetPostsByUser(id);
+            return Ok(posts);
+        }
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         public IActionResult AddPost(Post post)
         {
