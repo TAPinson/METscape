@@ -42,11 +42,24 @@ export function ExhibitProvider(props) {
                         .then((resp) => {
                             if (!retrievedObjects.includes(resp)) {
                                 retrievedObjects.push(resp)
-                                setExhibits([...retrievedObjects, resp])
+                                setExhibits([...retrievedObjects])
                             }
                         })
                 })
             })
+    }
+
+    const getPostExhibits = (posts) => {
+        //console.log(posts)
+        let retrievedObjects = []
+        posts.map((post) => {
+            exhibitsCompiler(post.metId)
+                .then((resp) => {
+                    retrievedObjects.push(resp)
+                    setExhibits([...retrievedObjects])
+                })
+        })
+
     }
 
     return (
@@ -63,7 +76,8 @@ export function ExhibitProvider(props) {
                 getExhibitsByDepartment,
                 exhibits,
                 setExhibits,
-                exhibitsCompiler
+                exhibitsCompiler,
+                getPostExhibits
             }}
         >
             {props.children}

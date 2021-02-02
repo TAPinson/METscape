@@ -2,10 +2,10 @@ import React, { useState, createContext, useContext } from "react";
 import { PostContext } from "../providers/PostProvider";
 import "./ExhibitCard.css"
 import Modal from 'react-modal'
+import { useParams } from 'react-router-dom';
 
 const ExhibitCard = ({ exhibit }) => {
     const { addPost } = useContext(PostContext);
-
     const [modalIsOpen, setModalIsOpen] = useState(false)
     Modal.setAppElement('#root')
 
