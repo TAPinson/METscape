@@ -9,7 +9,7 @@ export function CommentProvider(props) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState([]);
 
-    const getPostById = (id) => {
+    const getCommentById = (id) => {
         // fetch(`${apiUrl}/${id}`)
         //     .then((res) => res.json())
         //     .then((resp) => setPost(resp))
@@ -18,7 +18,7 @@ export function CommentProvider(props) {
     return (
         <CommentContext.Provider
             value={{
-                getPostById,
+                getCommentById,
                 comment,
                 setComment,
                 setComments,
