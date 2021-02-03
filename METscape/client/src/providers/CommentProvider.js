@@ -15,6 +15,10 @@ export function CommentProvider(props) {
         //     .then((resp) => setPost(resp))
     }
 
+    const getCommentsByPost = (id) => {
+
+    }
+
     return (
         <CommentContext.Provider
             value={{

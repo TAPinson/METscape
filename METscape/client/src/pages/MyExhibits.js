@@ -35,10 +35,10 @@ const MyExhibits = () => {
         <div >
             {exhibits.map((exhibit) => {
                 return (
-                    <div className="my-exhibits-container">
-                        <h2><PostTitle key={exhibit.objectID} objectID={exhibit.objectID} /></h2>
-                        <ExhibitCard key={exhibit.objectID} exhibit={exhibit} />
-                        <InitialComment key={exhibit.objectID} objectID={exhibit.objectID} />
+                    <div key={exhibit.objectID} className="my-exhibits-container">
+                        <h2><PostTitle objectID={exhibit.objectID} /></h2>
+                        <ExhibitCard exhibit={exhibit} />
+                        <InitialComment objectID={exhibit.objectID} />
                         <div className="add-comment-button">Add Comment</div>
                     </div>
                 )
