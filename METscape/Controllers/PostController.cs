@@ -40,15 +40,6 @@ namespace METscape.Controllers
             return Ok(posts);
         }
 
-
-
-
-
-
-
-
-
-
         [HttpPost]
         public IActionResult AddPost(Post post)
         {

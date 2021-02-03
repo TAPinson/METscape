@@ -31,8 +31,6 @@ export function PostProvider(props) {
     const addPost = (post) => {
         const userId = JSON.parse(localStorage.getItem('userProfile')).id;
         post.userProfileId = userId
-        console.log(post)
-
         return fetch(`${apiUrl}`, {
             method: "POST",
             headers: {
