@@ -7,7 +7,6 @@ import "./DepartmentFeed.css"
 const DepartmentFeed = () => {
     const { getExhibitsByDepartment, exhibits } = useContext(ExhibitContext);
     const { departmentId } = useParams();
-    const [postsToDisplay, setPostsToDisplay] = useState([])
 
     useEffect(() => {
         getExhibitsByDepartment(departmentId)

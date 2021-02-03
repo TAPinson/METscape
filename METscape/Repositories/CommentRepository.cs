@@ -20,7 +20,7 @@ namespace METscape.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    INSET INTO Comment (PostId, Content, UserProfileId, DateCreated)
+                    INSERT INTO Comment (PostId, Content, UserProfileId, DateCreated)
                     OUTPUT INSERTED.ID
                     VALUES (@postId, @content, @userProfileId, @dateCreated)";
 

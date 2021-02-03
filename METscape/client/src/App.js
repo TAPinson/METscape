@@ -16,10 +16,12 @@ function App() {
       <UserProfileProvider>
         <ExhibitProvider>
           <PostProvider>
-            <Router>
-              <AppHeader />
-              <ApplicationViews />
-            </Router>
+            <CommentProvider>
+              <Router>
+                <AppHeader />
+                <ApplicationViews />
+              </Router>
+            </CommentProvider>
           </PostProvider>
         </ExhibitProvider>
       </UserProfileProvider>
