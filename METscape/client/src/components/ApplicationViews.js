@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { UserProfileContext } from '../providers/UserProfileProvider';
-import { PostContext, PostProvider } from "../providers/PostProvider"
+import { UserProfileContext, UserProfileProvider } from '../providers/UserProfileProvider';
+import { PostProvider } from "../providers/PostProvider"
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
@@ -9,11 +9,12 @@ import { CategoryBrowser } from "../pages/CategoryBrowser"
 import DepartmentFeed from '../pages/DepartmentFeed';
 import { ExhibitProvider } from '../providers/ExhibitProvider';
 import MyExhibits from '../pages/MyExhibits';
+import FriendManager from '../pages/FriendManager';
 
 
 
 const ApplicationViews = () => {
-    const { isLoggedIn, isAdmin } = useContext(UserProfileContext);
+    const { isLoggedIn } = useContext(UserProfileContext);
 
     const authLevel = () => {
         if (isLoggedIn) {
@@ -38,24 +39,14 @@ const ApplicationViews = () => {
                             </Route>
                         </ExhibitProvider>
                     </PostProvider>
-                    {/* <UserProfileProvider>
-                        <Route path="/users">
-                            <UserManager />
+                    <UserProfileProvider>
+                        <Route path="/friends" exact>
+                            <FriendManager />
                         </Route>
                     </UserProfileProvider>
-                    <UserProfileProvider>
-                        <Route path="/deactive">
-                            <DeactiveUserManager />
-                        </Route>
-                    </UserProfileProvider>
-                    <UserProfileProvider>
-                        <Route path="/unapprovedPosts">
-                            <UnapprovedPosts />
-                        </Route>
-                    </UserProfileProvider> */}
                 </>
             );
-        } else if (isLoggedIn && !isAdmin()) {
+        } else if (isLoggedIn) {
             return <Redirect to="/" />;
         } else {
             return <Redirect to="/login" />;

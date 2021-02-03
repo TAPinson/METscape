@@ -25,5 +25,12 @@ namespace METscape.Controllers
             var user = _userRepo.GetByFirebaseUserId(firebaseUserId); 
             return Ok(user);          
         }
+
+        [HttpGet("users")]
+        public IActionResult GetAllUsers()
+        {
+            var users = _userRepo.GetAllUsers();
+            return Ok(users);
+        }
     }
 }

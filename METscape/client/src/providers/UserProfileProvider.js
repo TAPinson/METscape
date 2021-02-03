@@ -76,7 +76,7 @@ export function UserProfileProvider(props) {
 
     const getAllUserProfiles = () => {
         return getToken().then((token) =>
-            fetch(`${apiUrl}`, {
+            fetch(`${apiUrl}/users`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,

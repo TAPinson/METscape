@@ -14,7 +14,6 @@ namespace METscape.Repositories
         public UserProfileRepository(IConfiguration config) : base(config) { }
 
 
-
         public UserProfile GetByFirebaseUserId(string firebaseUserId)
         {
             using (var conn = Connection)
@@ -51,6 +50,36 @@ namespace METscape.Repositories
                         reader.Close();
                         return null;
                     }
+                }
+            }
+        }
+
+        public List<UserProfile> GetAllUsers()
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT Id, FirstName, LastName, UserName, Email
+                    FROM UserProfile";
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    var users = new List<UserProfile>();
+                    while (reader.Read())
+                    {
+                        var user = new UserProfile()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            Email = reader.GetString(reader.GetOrdinal("Email"))
+                        };
+                        users.Add(user);
+                    }
+                    reader.Close();
+                    return users;
                 }
             }
         }
