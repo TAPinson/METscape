@@ -23,9 +23,12 @@ export function PostProvider(props) {
     }
 
     const getPostsByUser = (id) => {
-        fetch(`${apiUrl}/userposts/${id}`)
+        return fetch(`${apiUrl}/userposts/${id}`)
             .then((res) => res.json())
-            .then((resp) => setPosts(resp))
+            .then((resp) => {
+                setPosts(resp)
+                return resp
+            })
     }
 
     const addPost = (post) => {

@@ -24,7 +24,7 @@ namespace METscape.Controllers
         public IActionResult GetByPostId(int id)
         {
             var comments = _commentRepo.GetCommentsByPost(id);
-            return Ok(comments)
+            return Ok(comments);
         }
 
         [HttpPost]

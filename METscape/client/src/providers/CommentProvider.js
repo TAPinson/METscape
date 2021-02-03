@@ -16,8 +16,30 @@ export function CommentProvider(props) {
     }
 
     const getCommentsByPost = (id) => {
-
+        fetch(`${apiUrl}/bypost/${id}`)
+            .then((res) => res.json())
+            .then((resp) => setComments(resp))
     }
+
+    // const getPostsByUser = (id) => {
+    //     fetch(`${apiUrl}/userposts/${id}`)
+    //         .then((res) => res.json())
+    //         .then((resp) => setPosts(resp))
+    // }
+
+    const addComment = (comment) => {
+        const userId = JSON.parse(localStorage.getItem('userProfile')).id;
+        comment.userProfileId = userId
+        return fetch(`${apiUrl}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(comment)
+        })
+    }
+
+
 
     return (
         <CommentContext.Provider
@@ -26,7 +48,8 @@ export function CommentProvider(props) {
                 comment,
                 setComment,
                 setComments,
-                comments
+                comments,
+                addComment
             }}
         >
             {props.children}

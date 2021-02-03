@@ -11,7 +11,11 @@ const MyExhibits = () => {
 
     useEffect(() => {
         getPostsByUser(userId)
-        getPostExhibits(posts)
+            .then((postResponse) => {
+                console.log(postResponse)
+                getPostExhibits(postResponse)
+            })
+
     }, []);
 
     const PostTitle = (objectID) => {
