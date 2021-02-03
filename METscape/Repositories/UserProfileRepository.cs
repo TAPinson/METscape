@@ -74,6 +74,7 @@ namespace METscape.Repositories
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                             LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            UserName = reader.GetString(reader.GetOrdinal("UserName")),
                             Email = reader.GetString(reader.GetOrdinal("Email"))
                         };
                         users.Add(user);

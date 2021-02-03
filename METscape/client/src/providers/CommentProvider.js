@@ -21,12 +21,6 @@ export function CommentProvider(props) {
             .then((resp) => setComments(resp))
     }
 
-    // const getPostsByUser = (id) => {
-    //     fetch(`${apiUrl}/userposts/${id}`)
-    //         .then((res) => res.json())
-    //         .then((resp) => setPosts(resp))
-    // }
-
     const addComment = (comment) => {
         const userId = JSON.parse(localStorage.getItem('userProfile')).id;
         comment.userProfileId = userId
