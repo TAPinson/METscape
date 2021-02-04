@@ -1,17 +1,27 @@
 import React, { useEffect, useContext } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
+import { FriendshipContext } from "../providers/FriendshipProvider";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import "./FriendManager.css"
 
 const FriendManager = () => {
-
     const { getAllUserProfiles, users } = useContext(UserProfileContext);
+    const { addFriendship } = useContext(FriendshipContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
 
     useEffect(() => {
         getAllUserProfiles()
     }, []);
+
+    const createFriendship = (id) => {
+        const newFriend = {
+            approverId: id,
+            isApproved: 1
+        }
+        console.log(newFriend)
+        addFriendship(newFriend)
+    }
 
     return (
         <>
@@ -26,7 +36,10 @@ const FriendManager = () => {
                             <div className="userprofile-card" key={user.id}>
                                 <div>{user.firstName} {user.lastName}</div>
                                 <div>{user.userName}</div>
-                                <div className="add-friend-button">
+                                <div className="add-friend-button"
+                                    onClick={() => {
+                                        createFriendship(user.id)
+                                    }}>
                                     ➕
                                 </div>
                             </div>

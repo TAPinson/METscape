@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { UserProfileContext, UserProfileProvider } from '../providers/UserProfileProvider';
 import { PostProvider } from "../providers/PostProvider"
+import { FriendshipProvider } from "../providers/FriendshipProvider"
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
@@ -40,9 +41,11 @@ const ApplicationViews = () => {
                         </ExhibitProvider>
                     </PostProvider>
                     <UserProfileProvider>
-                        <Route path="/friends" exact>
-                            <FriendManager />
-                        </Route>
+                        <FriendshipProvider>
+                            <Route path="/friends" exact>
+                                <FriendManager />
+                            </Route>
+                        </FriendshipProvider>
                     </UserProfileProvider>
                 </>
             );

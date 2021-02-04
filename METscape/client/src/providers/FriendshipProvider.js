@@ -17,7 +17,7 @@ export function FriendshipProvider(props) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(comment)
+            body: JSON.stringify(friendship)
         })
     }
 
