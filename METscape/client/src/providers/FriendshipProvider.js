@@ -19,6 +19,17 @@ export function FriendshipProvider(props) {
             },
             body: JSON.stringify(friendship)
         })
+            .then(friends.push(friendship))
+    }
+
+    const getUserFriends = (id) => {
+        return fetch(`${apiUrl}/myfriends/${id}`)
+            .then((res) => res.json())
+            .then((resp) => {
+                setFriends(resp)
+
+            })
+
     }
 
     return (
@@ -28,7 +39,8 @@ export function FriendshipProvider(props) {
                 setFriend,
                 friends,
                 setFriends,
-                addFriendship
+                addFriendship,
+                getUserFriends
             }}
         >
             {props.children}

@@ -58,7 +58,6 @@ const MyExhibits = () => {
         )
     }
 
-
     return (
         <div >
             {exhibits.map((exhibit) => {
@@ -68,7 +67,6 @@ const MyExhibits = () => {
                         <MyExhibitCard exhibit={exhibit} />
                         <InitialComment objectID={exhibit.objectID} />
                         <CommentContainer objectID={exhibit.objectID} />
-                        {/* <CommentModal objectID={exhibit.objectID} /> */}
                     </div>
                 )
             })}
