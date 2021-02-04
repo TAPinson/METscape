@@ -31,7 +31,7 @@ namespace METscape.Controllers
         public IActionResult AddComment(Comment comment)
         {
             _commentRepo.Add(comment);
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
     }
 }

@@ -39,7 +39,6 @@ const MyExhibits = () => {
 
     const handleContentUpdate = (event) => {
         newComment[event.target.name] = event.target.value
-        console.log(newComment)
     }
 
     const commentCreator = (objectID) => {

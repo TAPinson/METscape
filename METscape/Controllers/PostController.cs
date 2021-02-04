@@ -44,7 +44,7 @@ namespace METscape.Controllers
         public IActionResult AddPost(Post post)
         {
             _postRepo.Add(post);
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
     }
 }

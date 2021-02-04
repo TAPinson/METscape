@@ -24,6 +24,13 @@ namespace METscape.Controllers
         public IActionResult AddFriendship(Friendship friendship)
         {
             _friendRepo.Add(friendship);
+            return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetUserFriends(int id)
+        {
+            _friendRepo.GetFriendshipsByUser(id);
             return RedirectToAction(nameof(Index));
         }
     }

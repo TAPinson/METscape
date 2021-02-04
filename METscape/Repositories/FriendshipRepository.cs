@@ -32,5 +32,36 @@ namespace METscape.Repositories
             }
         }
 
+        public List<Friendship> GetFriendshipsByUser(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using  (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT Id, InitiatorId, ApproverId, IsApproved
+                    FROM Friendship
+                    WHERE InitiatorId = @id OR ApproverId = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    var friends = new List<Friendship>();
+                    while (reader.Read())
+                    {
+                        var friend = new Friendship()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            InitiatorId = reader.GetInt32(reader.GetOrdinal("InitiatorId")),
+                            ApproverId = reader.GetInt32(reader.GetOrdinal("ApproverId")),
+                            IsApproved = reader.GetBoolean(reader.GetOrdinal("IsApproved"))
+                        };
+                        friends.Add(friend);
+                    }
+                    reader.Close();
+                    return friends;
+                }
+            }    
+        }
+
     }
 }
