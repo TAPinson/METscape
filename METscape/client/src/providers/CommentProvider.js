@@ -16,9 +16,15 @@ export function CommentProvider(props) {
     }
 
     const getCommentsByPost = (id) => {
-        fetch(`${apiUrl}/bypost/${id}`)
+        return fetch(`${apiUrl}/bypost/${id}`)
             .then((res) => res.json())
-            .then((resp) => setComments(resp))
+            .then((resp) => {
+                //console.log(resp)
+                return resp
+
+                //setComments(resp)
+            })
+
     }
 
     const addComment = (comment) => {

@@ -33,8 +33,8 @@ export function FriendshipProvider(props) {
             .then((res) => res.json())
             .then((resp) => {
                 setFriends(resp)
+                return [...friends]
             })
-
     }
 
     return (

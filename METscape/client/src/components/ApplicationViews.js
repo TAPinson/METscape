@@ -11,6 +11,7 @@ import DepartmentFeed from '../pages/DepartmentFeed';
 import { ExhibitProvider } from '../providers/ExhibitProvider';
 import MyExhibits from '../pages/MyExhibits';
 import FriendManager from '../pages/FriendManager';
+import MyFeed from "../pages/MyFeed"
 
 
 
@@ -44,6 +45,13 @@ const ApplicationViews = () => {
                         <FriendshipProvider>
                             <Route path="/friends" exact>
                                 <FriendManager />
+                            </Route>
+                        </FriendshipProvider>
+                    </UserProfileProvider>
+                    <UserProfileProvider>
+                        <FriendshipProvider>
+                            <Route path="/myfeed" exact>
+                                <MyFeed />
                             </Route>
                         </FriendshipProvider>
                     </UserProfileProvider>

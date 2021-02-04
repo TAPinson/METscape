@@ -62,9 +62,6 @@ const FriendManager = () => {
                     if (user.id === userId) {
                         return null
                     }
-
-
-
                     else {
                         return (
                             <div className="userprofile-card" key={user.id}>
