@@ -43,7 +43,8 @@ export function CommentProvider(props) {
                 setComment,
                 setComments,
                 comments,
-                addComment
+                addComment,
+                getCommentsByPost
             }}
         >
             {props.children}

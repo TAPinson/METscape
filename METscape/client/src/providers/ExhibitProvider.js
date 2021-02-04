@@ -50,7 +50,6 @@ export function ExhibitProvider(props) {
     }
 
     const getPostExhibits = (posts) => {
-        //console.log(posts)
         let retrievedObjects = []
         posts.map((post) => {
             exhibitsCompiler(post.metId)

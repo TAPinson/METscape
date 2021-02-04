@@ -6,6 +6,7 @@ namespace METscape.Repositories
     public interface IFriendshipRepository
     {
         void Add(Friendship friendship);
+        void Delete(int id);
         List<Friendship> GetFriendshipsByUser(int id);
     }
 }

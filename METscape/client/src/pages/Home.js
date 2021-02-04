@@ -14,7 +14,7 @@ const Home = () => {
     return (
         <div >
             {post.title} <br />
-            <img src={exhibit.primaryImage} />
+            <img src={exhibit.primaryImage} alt="exhibit representation" />
         </div>
     );
 };

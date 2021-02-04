@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { PostContext } from "../providers/PostProvider";
+
 import { ExhibitContext } from "../providers/ExhibitProvider";
 import './CategoryBrowser.css';
 import { useHistory } from 'react-router-dom';

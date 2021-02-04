@@ -33,5 +33,12 @@ namespace METscape.Controllers
              var friends = _friendRepo.GetFriendshipsByUser(id);
             return Ok(friends);
         }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteFriendship(int id)
+        {
+            _friendRepo.Delete(id);
+            return Ok();
+        }
     }
 }

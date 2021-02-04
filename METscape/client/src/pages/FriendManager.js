@@ -1,13 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
-import { PostContext } from "../providers/PostProvider";
-import { ExhibitContext } from "../providers/ExhibitProvider";
 import { FriendshipContext } from "../providers/FriendshipProvider";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import "./FriendManager.css"
 
 const FriendManager = () => {
     const { getAllUserProfiles, users } = useContext(UserProfileContext);
-    const { addFriendship, getUserFriends, friends } = useContext(FriendshipContext);
+    const { addFriendship, getUserFriends, friends, deleteFriendship } = useContext(FriendshipContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [toggler, setToggler] = useState(0)
     useEffect(() => {
@@ -15,31 +13,35 @@ const FriendManager = () => {
         getAllUserProfiles()
     }, [toggler]);
 
-
-
     const createFriendship = (id) => {
         const newFriend = {
             approverId: id,
             isApproved: 1
         }
-        //console.log(newFriend)
         addFriendship(newFriend)
         const toggle = toggler + 1
         setToggler(toggle)
     }
 
-    const notFriends = users.filter((person) => {
-        // for (const buddy of friends) {
-        //     if (buddy.initiatorId !== person.id && buddy.approverId !== person.id) {
-        //         return person
-        //     }
-        // }
-    })
+    const removeFriend = (id) => {
+        deleteFriendship(id)
+        const toggle = toggler + 1
+        setToggler(toggle)
+
+    }
 
     const AddFriendButton = (user) => {
         for (const buddy of friends) {
             if (buddy.approverId === user.user.id || buddy.initiatorId === user.user.id) {
-                return null
+                return (
+                    <div className="add-friend-button"
+                        onClick={() => {
+                            removeFriend(buddy.id)
+                        }}>
+                        ❌
+                    </div>
+
+                )
             }
         }
         return (

@@ -22,12 +22,17 @@ export function FriendshipProvider(props) {
             .then(friends.push(friendship))
     }
 
+    const deleteFriendship = (id) => {
+        return fetch(`${apiUrl}/delete/${id}`, {
+            method: 'DELETE',
+        })
+    }
+
     const getUserFriends = (id) => {
         return fetch(`${apiUrl}/myfriends/${id}`)
             .then((res) => res.json())
             .then((resp) => {
                 setFriends(resp)
-
             })
 
     }
@@ -40,7 +45,8 @@ export function FriendshipProvider(props) {
                 friends,
                 setFriends,
                 addFriendship,
-                getUserFriends
+                getUserFriends,
+                deleteFriendship
             }}
         >
             {props.children}

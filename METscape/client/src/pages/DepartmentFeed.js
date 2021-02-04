@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { ExhibitContext } from "../providers/ExhibitProvider";
 import { useParams } from 'react-router-dom';
 import ExhibitCard from "../components/ExhibitCard"

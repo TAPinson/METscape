@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { CommentContext } from "../providers/CommentProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
