@@ -89,7 +89,7 @@ const MyExhibits = () => {
                         <h2><PostTitle objectID={exhibit.objectID} /></h2>
                         <MyExhibitCard exhibit={exhibit} />
                         <InitialComment objectID={exhibit.objectID} />
-                        <UserComments objectID={exhibit.objectID} />
+                        {/* <UserComments objectID={exhibit.objectID} /> */}
 
 
                         <CommentContainer objectID={exhibit.objectID} />
