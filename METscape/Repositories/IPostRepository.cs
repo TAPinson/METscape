@@ -9,6 +9,7 @@ namespace METscape.Repositories
     public interface IPostRepository
     {
         void Add(Post post);
+        List<Post> GetFriendsPosts(int id);
         Post GetPostById(int id);
         List<Post> GetPostsByUser(int userId);
     }

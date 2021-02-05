@@ -40,6 +40,13 @@ namespace METscape.Controllers
             return Ok(posts);
         }
 
+        [HttpGet("friendposts/{id}")]
+        public IActionResult GetFriendsPosts(int id)
+        {
+            var posts = _postRepo.GetFriendsPosts(id);
+            return Ok(posts);
+        }
+
         [HttpPost]
         public IActionResult AddPost(Post post)
         {

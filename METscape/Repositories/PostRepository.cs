@@ -104,5 +104,41 @@ namespace METscape.Repositories
             }
         }
 
+        public List<Post> GetFriendsPosts(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT Id, MetId, DateCreated, UserProfileId, Title, Content 
+                    FROM Post where UserProfileId in (
+                    SELECT * from 
+                    (select ApproverId as UserProfileId from Friendship where InitiatorId = @id) as A
+                    union
+                    (select InitiatorId as UserProfileId from Friendship where ApproverId = @id))";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    var posts = new List<Post>();
+                    while (reader.Read())
+                    {
+                        var post = new Post()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            MetId = reader.GetInt32(reader.GetOrdinal("MetId")),
+                            DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
+                            UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+                            Title = reader.GetString(reader.GetOrdinal("Title")),
+                            Content = reader.GetString(reader.GetOrdinal("Content"))
+                        };
+                        posts.Add(post);
+                    }
+                    reader.Close();
+                    return posts;
+                }
+            }
+        }
+
     }
 }

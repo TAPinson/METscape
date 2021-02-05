@@ -35,6 +35,15 @@ export function PostProvider(props) {
         return fetch(`${apiUrl}/userposts/${id}`)
             .then((res) => res.json())
             .then((resp) => {
+                //setPosts(resp)
+                return resp
+            })
+    }
+
+    const getFriendsPosts = (id) => {
+        return fetch(`${apiUrl}/friendposts/${id}`)
+            .then((res) => res.json())
+            .then((resp) => {
                 setPosts(resp)
                 return resp
             })
@@ -63,7 +72,8 @@ export function PostProvider(props) {
                 posts,
                 addPost,
                 getPostsByUser,
-                getPostsByFriend
+                getPostsByFriend,
+                getFriendsPosts
             }}
         >
             {props.children}

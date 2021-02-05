@@ -58,7 +58,6 @@ export function ExhibitProvider(props) {
                     setExhibits([...retrievedObjects])
                 })
         })
-
     }
 
     return (
