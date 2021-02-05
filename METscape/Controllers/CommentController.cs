@@ -43,5 +43,16 @@ namespace METscape.Controllers
             _commentRepo.Delete(id);
             return Ok();
         }
+
+        [HttpPut("edit/{id}")]
+        public IActionResult EditComment(int id, Comment comment)
+        {
+            if (id != comment.Id)
+            {
+                return BadRequest();
+            }
+            _commentRepo.UpdateComment(comment);
+            return Ok();
+        }
     }
 }

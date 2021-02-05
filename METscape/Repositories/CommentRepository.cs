@@ -95,6 +95,29 @@ namespace METscape.Repositories
             }
         }
 
-
+        public void UpdateComment(Comment comment)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    UPDATE Comment
+                    SET
+                        PostId = @postId,
+                        Content = @content,
+                        UserProfileId = @userProfileId,
+                        DateCreated = @dateCreated
+                    WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@postId", comment.PostId);
+                    cmd.Parameters.AddWithValue("@content", comment.Content);
+                    cmd.Parameters.AddWithValue("@userProfileId", comment.UserProfileId);
+                    cmd.Parameters.AddWithValue("@dateCreated", comment.DateCreated);
+                    cmd.Parameters.AddWithValue("@id", comment.Id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

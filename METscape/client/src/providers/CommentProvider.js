@@ -33,6 +33,16 @@ export function CommentProvider(props) {
         })
     }
 
+    const updateComment = (comment) => {
+        return fetch(`${apiUrl}/edit/${comment.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(comment)
+        })
+    }
+
     return (
         <CommentContext.Provider
             value={{
@@ -42,7 +52,8 @@ export function CommentProvider(props) {
                 comments,
                 addComment,
                 getCommentsByPost,
-                deleteComment
+                deleteComment,
+                updateComment
             }}
         >
             {props.children}

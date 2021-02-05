@@ -2,14 +2,17 @@ import React, { useContext, useState, useEffect } from "react";
 import { CommentContext } from "../providers/CommentProvider"
 import { PostContext } from "../providers/PostProvider";
 import "./ExhibitCard.css"
-
+import Modal from 'react-modal'
 
 const MyExhibitCard = ({ exhibit }) => {
     const { posts, getPostsByUser } = useContext(PostContext);
-    const { addComment, getCommentsByPost, deleteComment } = useContext(CommentContext);
+    const { addComment, getCommentsByPost, deleteComment, updateComment } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
     const [toggle, setToggle] = useState([])
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
+
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    Modal.setAppElement('#root')
 
     useEffect(() => {
         commentsFinder()
@@ -49,7 +52,9 @@ const MyExhibitCard = ({ exhibit }) => {
             </section>
         )
     }
+
     let newComment = {}
+
     const handleContentUpdate = (event) => {
         newComment[event.target.name] = event.target.value
     }
@@ -83,6 +88,50 @@ const MyExhibitCard = ({ exhibit }) => {
         }
     }
 
+    let editedComment = []
+
+    const handleCommentUpdate = (event) => {
+        editedComment[event.target.name] = event.target.value
+    }
+
+    const commentUpdater = (comment) => {
+        comment.comment.content = editedComment.content
+        const refurbishedComment = comment.comment
+        updateComment(refurbishedComment)
+    }
+
+    const EditButton = (comment) => {
+        return (
+            <>
+                <div className="comment-edit-button" onClick={() => {
+                    // editComment()
+                    setModalIsOpen(true)
+                }}>📝
+            </div>
+
+
+                <Modal className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+
+                    <h2>Comment</h2>
+                    <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleCommentUpdate} />
+
+                    <button onClick={evt => {
+                        evt.preventDefault()
+                        commentUpdater(comment)
+                        setModalIsOpen(false)
+                    }}>Save
+                                    </button>
+                    <div>
+                        <button className="modalClose" onClick={() => setModalIsOpen(false)}>Close</button>
+                    </div>
+                </Modal>
+
+
+
+            </>
+        )
+    }
+
     return (<>
         <div className="exhibit-card-container">
             <div className="exhibit-card">
@@ -102,9 +151,14 @@ const MyExhibitCard = ({ exhibit }) => {
         <div>
             {comments.map((comment) => {
                 return <div key={comment.id} className="initial-comment">
-                    <div>{comment.content}</div><div>{comment.dateCreated}</div>
-                    {/* <div className="comment-delete-button">❌</div> */}
+                    <div>{comment.content}</div>
+                    <div>{comment.dateCreated}</div>
+
                     <DeleteButton comment={comment} />
+                    <EditButton comment={comment} />
+
+
+
                 </div>
             })}
         </div>
