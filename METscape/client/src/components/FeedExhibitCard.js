@@ -6,11 +6,12 @@ import Modal from 'react-modal'
 
 const FeedExhibitCard = ({ exhibit }) => {
     const { addPost, posts } = useContext(PostContext);
-    const { addComment, getCommentsByPost, deleteComment } = useContext(CommentContext);
+    const { addComment, getCommentsByPost, deleteComment, updateComment } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
     const [toggle, setToggle] = useState([])
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [modalIsOpen2, setModalIsOpen2] = useState(false)
     Modal.setAppElement('#root')
 
     useEffect(() => {
@@ -94,6 +95,43 @@ const FeedExhibitCard = ({ exhibit }) => {
             .then(() => setToggle(toggle + 1))
     }
 
+    let editedComment = []
+
+    const commentUpdater = (comment) => {
+        comment.comment.content = editedComment.content
+        const refurbishedComment = comment.comment
+        updateComment(refurbishedComment)
+    }
+
+    const handleEditCommentUpdate = (event) => {
+        editedComment[event.target.name] = event.target.value
+    }
+
+    const EditButton = (comment) => {
+        return (
+            <>
+                <div className="comment-edit-button" onClick={() => {
+                    // editComment()
+                    setModalIsOpen2(true)
+                }}>📝
+            </div>
+                <Modal className="postModal" isOpen={modalIsOpen2} onRequestClose={() => setModalIsOpen2(false)}>
+                    <h2>Comment</h2>
+                    <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleEditCommentUpdate} />
+                    <button onClick={evt => {
+                        evt.preventDefault()
+                        commentUpdater(comment)
+                        setModalIsOpen2(false)
+                    }}>Save
+                                    </button>
+                    <div>
+                        <button className="modalClose" onClick={() => setModalIsOpen2(false)}>Close</button>
+                    </div>
+                </Modal>
+            </>
+        )
+    }
+
 
     return (
         <>
@@ -134,6 +172,7 @@ const FeedExhibitCard = ({ exhibit }) => {
                     return <div key={comment.id} className="initial-comment">
                         <div>{comment.content}</div><div>{comment.dateCreated}</div>
                         <DeleteButton comment={comment} />
+                        <EditButton comment={comment} />
                     </div>
                 })}
             </div>
