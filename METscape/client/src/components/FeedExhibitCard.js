@@ -6,9 +6,10 @@ import Modal from 'react-modal'
 
 const FeedExhibitCard = ({ exhibit }) => {
     const { addPost, posts } = useContext(PostContext);
-    const { addComment, getCommentsByPost } = useContext(CommentContext);
+    const { addComment, getCommentsByPost, deleteComment } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
     const [toggle, setToggle] = useState([])
+    const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [modalIsOpen, setModalIsOpen] = useState(false)
     Modal.setAppElement('#root')
 
@@ -74,6 +75,26 @@ const FeedExhibitCard = ({ exhibit }) => {
             .then(() => setToggle(toggle + 1))
     }
 
+    const DeleteButton = (comment) => {
+        if (comment.comment.userProfileId === userId) {
+            return (
+                <div className="comment-delete-button" onClick={() => {
+                    removeComment(comment.comment.id)
+                }}>
+                    ❌
+                </div>
+            )
+        }
+        else {
+            return null
+        }
+    }
+    const removeComment = (id) => {
+        deleteComment(id)
+            .then(() => setToggle(toggle + 1))
+    }
+
+
     return (
         <>
             <div className="exhibit-card-container">
@@ -112,6 +133,7 @@ const FeedExhibitCard = ({ exhibit }) => {
                 {comments.map((comment) => {
                     return <div key={comment.id} className="initial-comment">
                         <div>{comment.content}</div><div>{comment.dateCreated}</div>
+                        <DeleteButton comment={comment} />
                     </div>
                 })}
             </div>

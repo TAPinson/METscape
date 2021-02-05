@@ -36,5 +36,12 @@ namespace METscape.Controllers
             _commentRepo.Add(comment);
             return Ok();
         }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteComment(int id)
+        {
+            _commentRepo.Delete(id);
+            return Ok();
+        }
     }
 }

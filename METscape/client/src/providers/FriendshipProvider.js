@@ -24,7 +24,7 @@ export function FriendshipProvider(props) {
 
     const deleteFriendship = (id) => {
         return fetch(`${apiUrl}/delete/${id}`, {
-            method: 'DELETE',
+            method: 'DELETE'
         })
     }
 

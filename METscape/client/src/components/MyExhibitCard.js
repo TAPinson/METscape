@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CommentContext } from "../providers/CommentProvider"
 import { PostContext } from "../providers/PostProvider";
-
 import "./ExhibitCard.css"
 
 
 const MyExhibitCard = ({ exhibit }) => {
     const { posts, getPostsByUser } = useContext(PostContext);
-    const { addComment, getCommentsByPost } = useContext(CommentContext);
+    const { addComment, getCommentsByPost, deleteComment } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
     const [toggle, setToggle] = useState([])
+    const userId = JSON.parse(localStorage.getItem('userProfile')).id;
 
     useEffect(() => {
         commentsFinder()
@@ -60,6 +60,26 @@ const MyExhibitCard = ({ exhibit }) => {
             .then(() => setToggle(toggle + 1))
     }
 
+    const removeComment = (id) => {
+        deleteComment(id)
+            .then(() => setToggle(toggle + 1))
+    }
+
+    const DeleteButton = (comment) => {
+        if (comment.comment.userProfileId === userId) {
+            return (
+                <div className="comment-delete-button" onClick={() => {
+                    removeComment(comment.comment.id)
+                }}>
+                    ❌
+                </div>
+            )
+        }
+        else {
+            return null
+        }
+    }
+
     return (<>
         <div className="exhibit-card-container">
             <div className="exhibit-card">
@@ -78,6 +98,8 @@ const MyExhibitCard = ({ exhibit }) => {
             {comments.map((comment) => {
                 return <div key={comment.id} className="initial-comment">
                     <div>{comment.content}</div><div>{comment.dateCreated}</div>
+                    {/* <div className="comment-delete-button">❌</div> */}
+                    <DeleteButton comment={comment} />
                 </div>
             })}
         </div>
