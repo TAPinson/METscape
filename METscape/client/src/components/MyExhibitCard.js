@@ -19,6 +19,9 @@ const MyExhibitCard = ({ exhibit }) => {
         const linkedContent = posts.find((post) => {
             return post.metId === objectID.objectID
         })
+        if (linkedContent === undefined) {
+            return null
+        }
         return (
             <div className="initial-comment">
                 <div>{linkedContent.content}</div>
@@ -87,16 +90,13 @@ const MyExhibitCard = ({ exhibit }) => {
                     <h3> {exhibit.title} </h3>
                 </div>
                 <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
-
                 <div className="exhibit-card-details">
                     From: {exhibit.country} <br />
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />
                     Medium: {exhibit.medium} <br />
                 </div>
-
             </div>
-
         </div>
         <InitialComment objectID={exhibit.objectID} />
         <div>

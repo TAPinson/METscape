@@ -1,14 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
-import { FriendshipContext } from "../providers/FriendshipProvider"
-import { CommentContext } from "../providers/CommentProvider"
-import { UserProfileContext } from "../providers/UserProfileProvider"
 import FeedExhibitCard from "../components/FeedExhibitCard"
 
 const MyFeed = () => {
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
-    const { getPostById, posts, setPosts, getPostsByFriend, getFriendsPosts } = useContext(PostContext);
+    const { posts, getFriendsPosts } = useContext(PostContext);
     const { exhibits, getPostExhibits } = useContext(ExhibitContext);
 
 

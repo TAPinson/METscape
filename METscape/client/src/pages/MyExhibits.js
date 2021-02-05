@@ -21,6 +21,9 @@ const MyExhibits = () => {
         const linkedTitle = posts.find((post) => {
             return post.metId === objectID.objectID
         })
+        if (linkedTitle === undefined) {
+            return null
+        }
         return linkedTitle.title
     }
 
@@ -30,22 +33,17 @@ const MyExhibits = () => {
         })
         deletePost(linkedPost.id)
             .then(() => setToggle(toggle + 1))
-
     }
-
-
 
     return (
         <div >
             {exhibits.map((exhibit) => {
                 return (
                     <div key={exhibit.objectID} className="my-exhibits-container">
-
                         <div>
                             <h2><PostTitle objectID={exhibit.objectID} /></h2>
                             <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>DELETE POST</div>
                         </div>
-
                         <MyExhibitCard exhibit={exhibit} />
                     </div>
                 )
