@@ -4,7 +4,7 @@ import { ExhibitContext } from "../providers/ExhibitProvider";
 import { FriendshipContext } from "../providers/FriendshipProvider"
 import { CommentContext } from "../providers/CommentProvider"
 import { UserProfileContext } from "../providers/UserProfileProvider"
-import ExhibitCard from "../components/ExhibitCard"
+import FeedExhibitCard from "../components/FeedExhibitCard"
 
 const MyFeed = () => {
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
@@ -74,9 +74,9 @@ const MyFeed = () => {
                 return (
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <h2><PostTitle objectID={exhibit.objectID} /></h2>
-                        <ExhibitCard exhibit={exhibit} />
-                        <InitialComment objectID={exhibit.objectID} />
-                        <UserComments objectID={exhibit.objectID} />
+                        <FeedExhibitCard exhibit={exhibit} />
+                        {/* <InitialComment objectID={exhibit.objectID} /> */}
+                        {/* <UserComments objectID={exhibit.objectID} /> */}
 
 
                         <CommentContainer objectID={exhibit.objectID} />
