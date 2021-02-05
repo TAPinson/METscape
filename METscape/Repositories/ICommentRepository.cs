@@ -7,6 +7,7 @@ namespace METscape.Repositories
     {
         void Add(Comment comment);
         void Delete(int id);
+        void DeleteByPost(int id);
         List<Comment> GetCommentsByPost(int id);
     }
 }

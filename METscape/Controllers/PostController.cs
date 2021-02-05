@@ -14,10 +14,12 @@ namespace METscape.Controllers
     public class PostController : ControllerBase
     {
         private IPostRepository _postRepo;
+        private ICommentRepository _commentRepo;
 
-        public PostController(IPostRepository postRepo)
+        public PostController(IPostRepository postRepo, ICommentRepository commentRepo)
         {
             _postRepo = postRepo;
+            _commentRepo = commentRepo;
         }
 
         [HttpGet("{id}")]
@@ -51,6 +53,14 @@ namespace METscape.Controllers
         public IActionResult AddPost(Post post)
         {
             _postRepo.Add(post);
+            return Ok();
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeletePost(int id)
+        {
+            _commentRepo.DeleteByPost(id);
+            _postRepo.Delete(id);
             return Ok();
         }
     }

@@ -83,15 +83,20 @@ const MyExhibitCard = ({ exhibit }) => {
     return (<>
         <div className="exhibit-card-container">
             <div className="exhibit-card">
-                <h3> {exhibit.title} </h3>
+                <div>
+                    <h3> {exhibit.title} </h3>
+                </div>
                 <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
+
                 <div className="exhibit-card-details">
                     From: {exhibit.country} <br />
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />
                     Medium: {exhibit.medium} <br />
                 </div>
+
             </div>
+
         </div>
         <InitialComment objectID={exhibit.objectID} />
         <div>
