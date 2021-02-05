@@ -28,45 +28,28 @@ const MyFeed = () => {
         return linkedTitle.title
     }
 
-    const InitialComment = (objectID) => {
-        const linkedContent = posts.find((post) => {
-            return post.metId === objectID.objectID
-        })
-        return (
-            <div className="initial-comment">{linkedContent.content}</div>
-        )
-    }
+    // let newComment = {}
 
-    const UserComments = (objectID) => {
-        const linkedContent = posts.find((post) => {
-            return post.metId === objectID.objectID
-        })
-        const postId = linkedContent.id
-        return <div className="initial-comment">COMMENTS SECTION</div>
-    }
+    // const CommentContainer = (objectID) => {
+    //     return (
+    //         <section className="new-comment-container">
+    //             <input className="comment-input" type="text" name="content" onChange={handleContentUpdate} />
+    //             <div className="submit-new-comment-button" onClick={() => commentCreator(objectID)}>Submit Comment</div>
+    //         </section>
+    //     )
+    // }
 
-    let newComment = {}
+    // const handleContentUpdate = (event) => {
+    //     newComment[event.target.name] = event.target.value
+    // }
 
-    const CommentContainer = (objectID) => {
-        return (
-            <section className="new-comment-container">
-                <input className="comment-input" type="text" name="content" onChange={handleContentUpdate} />
-                <div className="submit-new-comment-button" onClick={() => commentCreator(objectID)}>Submit Comment</div>
-            </section>
-        )
-    }
-
-    const handleContentUpdate = (event) => {
-        newComment[event.target.name] = event.target.value
-    }
-
-    const commentCreator = (objectID) => {
-        const linkedContent = posts.find((post) => {
-            return post.metId === objectID.objectID
-        })
-        newComment.postId = linkedContent.id
-        addComment(newComment)
-    }
+    // const commentCreator = (objectID) => {
+    //     const linkedContent = posts.find((post) => {
+    //         return post.metId === objectID.objectID
+    //     })
+    //     newComment.postId = linkedContent.id
+    //     addComment(newComment)
+    // }
 
     return (
         <div >
@@ -75,39 +58,11 @@ const MyFeed = () => {
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <h2><PostTitle objectID={exhibit.objectID} /></h2>
                         <FeedExhibitCard exhibit={exhibit} />
-                        {/* <InitialComment objectID={exhibit.objectID} /> */}
-                        {/* <UserComments objectID={exhibit.objectID} /> */}
-
-
-                        <CommentContainer objectID={exhibit.objectID} />
+                        {/* <CommentContainer objectID={exhibit.objectID} /> */}
                     </div>
                 )
             })}
         </div>
-
-        // <div >
-        //     <h2>Posts</h2>
-        //     {posts.map((post) => {
-        //         return (
-        //             <>
-        //                 <div key={post.id}>{post.title}</div>
-
-        //             </>
-        //         )
-        //     })}
-        //     <h2>Exhibits</h2>
-        //     {exhibits.map((exhibit) => {
-        //         console.log(exhibit)
-        //         return (
-
-        //             <ExhibitCard key={exhibit.objectID} exhibit={exhibit} />
-
-        //         )
-        //     })
-
-        //     }
-
-        // </div>
     );
 };
 

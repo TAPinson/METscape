@@ -8,12 +8,13 @@ const FeedExhibitCard = ({ exhibit }) => {
     const { addPost, posts } = useContext(PostContext);
     const { addComment, getCommentsByPost } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
+    const [toggle, setToggle] = useState([])
     const [modalIsOpen, setModalIsOpen] = useState(false)
     Modal.setAppElement('#root')
 
     useEffect(() => {
         commentsFinder()
-    }, []);
+    }, [toggle]);
 
     const commentsFinder = () => {
         const linkedContent = posts.find((post) => {
@@ -45,8 +46,32 @@ const FeedExhibitCard = ({ exhibit }) => {
         newPost[event.target.id] = event.target.value
     }
 
+    const handleCommentUpdate = (event) => {
+        newComment[event.target.name] = event.target.value
+    }
+
     const postCreator = () => {
         addPost(newPost)
+    }
+
+    let newComment = {}
+
+    const CommentContainer = (objectID) => {
+        return (
+            <section className="new-comment-container">
+                <input className="comment-input" type="text" name="content" onChange={handleCommentUpdate} />
+                <div className="submit-new-comment-button" onClick={() => commentCreator(objectID)}>Submit Comment</div>
+            </section>
+        )
+    }
+
+    const commentCreator = (objectID) => {
+        const linkedContent = posts.find((post) => {
+            return post.metId === objectID.objectID
+        })
+        newComment.postId = linkedContent.id
+        addComment(newComment)
+            .then(() => setToggle(toggle + 1))
     }
 
     return (
@@ -90,6 +115,7 @@ const FeedExhibitCard = ({ exhibit }) => {
                     </div>
                 })}
             </div>
+            <CommentContainer objectID={exhibit.objectID} />
         </>
     );
 };
