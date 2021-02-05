@@ -14,28 +14,35 @@ const MyExhibitCard = ({ exhibit }) => {
         commentsFinder()
     }, []);
 
+    const InitialComment = (objectID) => {
+        const linkedContent = posts.find((post) => {
+            return post.metId === objectID.objectID
+        })
+        return (
+            <div className="initial-comment">
+                <div>{linkedContent.content}</div>
+                <div>{linkedContent.dateCreated}</div>
+            </div>
+        )
+    }
+
     const commentsFinder = () => {
         const linkedContent = posts.find((post) => {
             return post.metId === exhibit.objectID
         })
-
         getCommentsByPost(linkedContent.id)
-            //.then((resp) => resp.json())
-            //.then((res) => console.log(res))
             .then((resp) => {
                 setComments(resp)
                 return resp
             })
     }
 
-    console.log(comments)
-
     return (<>
         <div className="exhibit-card-container">
             <div className="exhibit-card">
                 <h3> {exhibit.title} </h3>
                 <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
-                <div>
+                <div className="exhibit-card-details">
                     From: {exhibit.country} <br />
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />
@@ -43,9 +50,12 @@ const MyExhibitCard = ({ exhibit }) => {
                 </div>
             </div>
         </div>
+        <InitialComment objectID={exhibit.objectID} />
         <div>
             {comments.map((comment) => {
-                return <div className="initial-comment">{comment.content}</div>
+                return <div key={comment.id} className="initial-comment">
+                    <div>{comment.content}</div><div>{comment.dateCreated}</div>
+                </div>
             })}
         </div>
     </>

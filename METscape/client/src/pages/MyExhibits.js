@@ -5,7 +5,6 @@ import { ExhibitContext } from "../providers/ExhibitProvider";
 import MyExhibitCard from "../components/MyExhibitCard"
 import "./MyExhibits.css"
 
-
 const MyExhibits = () => {
     const { posts, getPostsByUser } = useContext(PostContext);
     const { exhibits, getPostExhibits } = useContext(ExhibitContext);
@@ -24,15 +23,6 @@ const MyExhibits = () => {
             return post.metId === objectID.objectID
         })
         return linkedTitle.title
-    }
-
-    const InitialComment = (objectID) => {
-        const linkedContent = posts.find((post) => {
-            return post.metId === objectID.objectID
-        })
-        return (
-            <div className="initial-comment">{linkedContent.content}</div>
-        )
     }
 
     let newComment = {}
@@ -58,29 +48,6 @@ const MyExhibits = () => {
         )
     }
 
-    const UserComments = (objectID) => {
-
-        const linkedContent = posts.find((post) => {
-            return post.metId === objectID.objectID
-        })
-
-        const postId = linkedContent.id
-
-        // let postComments = []
-
-        // getCommentsByPost(postId)
-        //     .then((res) => {
-        //         postComments.push(res)
-        //         console.log(postComments)
-        //     })
-
-        return <div className="initial-comment">COMMENTS SECTION</div>
-    }
-
-
-
-
-
     return (
         <div >
             {exhibits.map((exhibit) => {
@@ -88,10 +55,6 @@ const MyExhibits = () => {
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <h2><PostTitle objectID={exhibit.objectID} /></h2>
                         <MyExhibitCard exhibit={exhibit} />
-                        <InitialComment objectID={exhibit.objectID} />
-                        {/* <UserComments objectID={exhibit.objectID} /> */}
-
-
                         <CommentContainer objectID={exhibit.objectID} />
                     </div>
                 )

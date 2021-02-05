@@ -24,7 +24,10 @@ namespace METscape.Controllers
         public IActionResult GetByPostId(int id)
         {
             var comments = _commentRepo.GetCommentsByPost(id);
-            return Ok(comments);
+
+            var orderedComments = comments.OrderBy(c => c.DateCreated).ToList();
+
+            return Ok(orderedComments);
         }
 
         [HttpPost]
