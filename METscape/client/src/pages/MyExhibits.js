@@ -25,28 +25,28 @@ const MyExhibits = () => {
         return linkedTitle.title
     }
 
-    let newComment = {}
+    // let newComment = {}
 
-    const handleContentUpdate = (event) => {
-        newComment[event.target.name] = event.target.value
-    }
+    // const handleContentUpdate = (event) => {
+    //     newComment[event.target.name] = event.target.value
+    // }
 
-    const commentCreator = (objectID) => {
-        const linkedContent = posts.find((post) => {
-            return post.metId === objectID.objectID
-        })
-        newComment.postId = linkedContent.id
-        addComment(newComment)
-    }
+    // const commentCreator = (objectID) => {
+    //     const linkedContent = posts.find((post) => {
+    //         return post.metId === objectID.objectID
+    //     })
+    //     newComment.postId = linkedContent.id
+    //     addComment(newComment)
+    // }
 
-    const CommentContainer = (objectID) => {
-        return (
-            <section className="new-comment-container">
-                <input className="comment-input" type="text" name="content" onChange={handleContentUpdate} />
-                <div className="submit-new-comment-button" onClick={() => commentCreator(objectID)}>Submit Comment</div>
-            </section>
-        )
-    }
+    // const CommentContainer = (objectID) => {
+    //     return (
+    //         <section className="new-comment-container">
+    //             <input className="comment-input" type="text" name="content" onChange={handleContentUpdate} />
+    //             <div className="submit-new-comment-button" onClick={() => commentCreator(objectID)}>Submit Comment</div>
+    //         </section>
+    //     )
+    // }
 
     return (
         <div >
@@ -55,7 +55,7 @@ const MyExhibits = () => {
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <h2><PostTitle objectID={exhibit.objectID} /></h2>
                         <MyExhibitCard exhibit={exhibit} />
-                        <CommentContainer objectID={exhibit.objectID} />
+                        {/* <CommentContainer objectID={exhibit.objectID} /> */}
                     </div>
                 )
             })}

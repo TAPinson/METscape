@@ -9,10 +9,11 @@ const MyExhibitCard = ({ exhibit }) => {
     const { posts, getPostsByUser } = useContext(PostContext);
     const { addComment, getCommentsByPost } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
+    const [toggle, setToggle] = useState([])
 
     useEffect(() => {
         commentsFinder()
-    }, []);
+    }, [toggle]);
 
     const InitialComment = (objectID) => {
         const linkedContent = posts.find((post) => {
@@ -37,6 +38,28 @@ const MyExhibitCard = ({ exhibit }) => {
             })
     }
 
+    const CommentContainer = (objectID) => {
+        return (
+            <section className="new-comment-container">
+                <input className="comment-input" type="text" name="content" onChange={handleContentUpdate} />
+                <div className="submit-new-comment-button" onClick={() => commentCreator(objectID)}>Submit Comment</div>
+            </section>
+        )
+    }
+    let newComment = {}
+    const handleContentUpdate = (event) => {
+        newComment[event.target.name] = event.target.value
+    }
+
+    const commentCreator = (objectID) => {
+        const linkedContent = posts.find((post) => {
+            return post.metId === objectID.objectID
+        })
+        newComment.postId = linkedContent.id
+        addComment(newComment)
+            .then(() => setToggle(toggle + 1))
+    }
+
     return (<>
         <div className="exhibit-card-container">
             <div className="exhibit-card">
@@ -58,6 +81,7 @@ const MyExhibitCard = ({ exhibit }) => {
                 </div>
             })}
         </div>
+        <CommentContainer objectID={exhibit.objectID} />
     </>
     );
 };
