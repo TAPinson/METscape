@@ -108,28 +108,35 @@ const FeedExhibitCard = ({ exhibit }) => {
     }
 
     const EditButton = (comment) => {
-        return (
-            <>
-                <div className="comment-edit-button" onClick={() => {
-                    // editComment()
-                    setModalIsOpen2(true)
-                }}>📝
-            </div>
-                <Modal className="postModal" isOpen={modalIsOpen2} onRequestClose={() => setModalIsOpen2(false)}>
-                    <h2>Comment</h2>
-                    <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleEditCommentUpdate} />
-                    <button onClick={evt => {
-                        evt.preventDefault()
-                        commentUpdater(comment)
-                        setModalIsOpen2(false)
-                    }}>Save
-                                    </button>
-                    <div>
-                        <button className="modalClose" onClick={() => setModalIsOpen2(false)}>Close</button>
-                    </div>
-                </Modal>
-            </>
-        )
+        if (userId === comment.comment.userProfileId) {
+            return (
+                <>
+                    <div className="comment-edit-button" onClick={() => {
+                        // editComment()
+                        setModalIsOpen2(true)
+                    }}>📝
+                </div>
+                    <Modal className="postModal" isOpen={modalIsOpen2} onRequestClose={() => setModalIsOpen2(false)}>
+                        <h2>Comment</h2>
+                        <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleEditCommentUpdate} />
+                        <button onClick={evt => {
+                            evt.preventDefault()
+                            commentUpdater(comment)
+                            setModalIsOpen2(false)
+                        }}>Save
+                                        </button>
+                        <div>
+                            <button className="modalClose" onClick={() => setModalIsOpen2(false)}>Close</button>
+                        </div>
+                    </Modal>
+                </>
+            )
+
+        }
+        else {
+            return null
+        }
+
     }
 
 
