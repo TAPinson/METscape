@@ -6,6 +6,7 @@ export function CommentProvider(props) {
     const apiUrl = "/api/comment";
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState([]);
+    const [toggle, setToggle] = useState([])
 
     const getCommentsByPost = (id) => {
         return fetch(`${apiUrl}/bypost/${id}`)
@@ -43,6 +44,10 @@ export function CommentProvider(props) {
         })
     }
 
+    const timeToToggle = () => {
+        setToggle(toggle + 1)
+    }
+
     return (
         <CommentContext.Provider
             value={{
@@ -53,7 +58,9 @@ export function CommentProvider(props) {
                 addComment,
                 getCommentsByPost,
                 deleteComment,
-                updateComment
+                updateComment,
+                toggle,
+                timeToToggle
             }}
         >
             {props.children}

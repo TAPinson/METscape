@@ -3,6 +3,7 @@ import { PostContext } from "../providers/PostProvider";
 import { CommentContext } from "../providers/CommentProvider"
 import "./ExhibitCard.css"
 import Modal from 'react-modal'
+import { EditButton } from "./CommentEditor"
 
 const FeedExhibitCard = ({ exhibit }) => {
     const { addPost, posts } = useContext(PostContext);
@@ -94,51 +95,6 @@ const FeedExhibitCard = ({ exhibit }) => {
         deleteComment(id)
             .then(() => setToggle(toggle + 1))
     }
-
-    let editedComment = []
-
-    const commentUpdater = (comment) => {
-        comment.comment.content = editedComment.content
-        const refurbishedComment = comment.comment
-        updateComment(refurbishedComment)
-    }
-
-    const handleEditCommentUpdate = (event) => {
-        editedComment[event.target.name] = event.target.value
-    }
-
-    const EditButton = (comment) => {
-        if (userId === comment.comment.userProfileId) {
-            return (
-                <>
-                    <div className="comment-edit-button" onClick={() => {
-                        // editComment()
-                        setModalIsOpen2(true)
-                    }}>📝
-                </div>
-                    <Modal className="postModal" isOpen={modalIsOpen2} onRequestClose={() => setModalIsOpen2(false)}>
-                        <h2>Comment</h2>
-                        <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleEditCommentUpdate} />
-                        <button onClick={evt => {
-                            evt.preventDefault()
-                            commentUpdater(comment)
-                            setModalIsOpen2(false)
-                        }}>Save
-                                        </button>
-                        <div>
-                            <button className="modalClose" onClick={() => setModalIsOpen2(false)}>Close</button>
-                        </div>
-                    </Modal>
-                </>
-            )
-
-        }
-        else {
-            return null
-        }
-
-    }
-
 
     return (
         <>
