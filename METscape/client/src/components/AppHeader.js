@@ -34,7 +34,7 @@ const AppHeader = () => {
                 <NavbarBrand tag={Link} to="/">
                     {/* <img
                         id="header-logo"
-                        src="/placeholder.png"
+                        src="client/src/components/images/logo.png"
                         width="30"
                         height="30"
                         className="mr-2"

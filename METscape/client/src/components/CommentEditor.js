@@ -1,13 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import Modal from 'react-modal'
 import { CommentContext } from "../providers/CommentProvider"
 
 export const EditButton = (comment) => {
-    const { addComment, getCommentsByPost, deleteComment, updateComment, toggle, setToggle, timeToToggle } = useContext(CommentContext);
+    const { updateComment, timeToToggle } = useContext(CommentContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
-    //const [toggle, setToggle] = useState([])
 
     let editedComment = []
 
@@ -26,7 +25,6 @@ export const EditButton = (comment) => {
         return (
             <>
                 <div className="comment-edit-button" onClick={() => {
-                    // editComment()
                     setModalIsOpen(true)
                 }}>📝
             </div>
@@ -39,7 +37,7 @@ export const EditButton = (comment) => {
                         commentUpdater(comment)
                         setModalIsOpen(false)
                     }}>Save
-                                    </button>
+                    </button>
                     <div>
                         <button className="modalClose" onClick={() => setModalIsOpen(false)}>Close</button>
                     </div>

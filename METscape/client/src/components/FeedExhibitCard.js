@@ -7,12 +7,11 @@ import { EditButton } from "./CommentEditor"
 
 const FeedExhibitCard = ({ exhibit }) => {
     const { addPost, posts } = useContext(PostContext);
-    const { addComment, getCommentsByPost, deleteComment, updateComment } = useContext(CommentContext);
+    const { addComment, getCommentsByPost, deleteComment } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
     const [toggle, setToggle] = useState([])
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [modalIsOpen, setModalIsOpen] = useState(false)
-    const [modalIsOpen2, setModalIsOpen2] = useState(false)
     Modal.setAppElement('#root')
 
     useEffect(() => {

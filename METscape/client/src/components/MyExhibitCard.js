@@ -1,19 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CommentContext } from "../providers/CommentProvider"
 import { PostContext } from "../providers/PostProvider";
-import "./ExhibitCard.css"
-import Modal from 'react-modal'
 import { EditButton } from "./CommentEditor"
+import "./ExhibitCard.css"
 
 const MyExhibitCard = ({ exhibit }) => {
-    const { posts, getPostsByUser } = useContext(PostContext);
-    const { addComment, getCommentsByPost, deleteComment, updateComment, toggle, setToggle } = useContext(CommentContext);
+    const { posts } = useContext(PostContext);
+    const { addComment, getCommentsByPost, deleteComment, toggle, timeToToggle } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
-
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
-
-    const [modalIsOpen, setModalIsOpen] = useState(false)
-    Modal.setAppElement('#root')
 
     useEffect(() => {
         commentsFinder()
@@ -58,7 +53,7 @@ const MyExhibitCard = ({ exhibit }) => {
         })
         newComment.postId = linkedContent.id
         addComment(newComment)
-            .then(() => setToggle(toggle + 1))
+            .then(timeToToggle)
     }
 
     const CommentContainer = (objectID) => {
@@ -73,7 +68,7 @@ const MyExhibitCard = ({ exhibit }) => {
     // Delete Comment Code
     const removeComment = (id) => {
         deleteComment(id)
-            .then(() => setToggle(toggle + 1))
+            .then(timeToToggle())
     }
 
     const DeleteButton = (comment) => {
