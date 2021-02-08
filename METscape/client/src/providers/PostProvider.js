@@ -9,6 +9,7 @@ export function PostProvider(props) {
 
     const [posts, setPosts] = useState([]);
     const [post, setPost] = useState([]);
+    const [postWasEdited, setPostWasEdited] = useState(0);
 
     const getPostById = (id) => {
         fetch(`${apiUrl}/${id}`)
@@ -91,6 +92,8 @@ export function PostProvider(props) {
                 getFriendsPosts,
                 deletePost,
                 editPost,
+                postWasEdited,
+                setPostWasEdited
             }}
         >
             {props.children}

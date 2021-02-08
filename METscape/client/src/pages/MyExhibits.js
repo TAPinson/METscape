@@ -7,7 +7,7 @@ import PostEditor from "../components/PostEditor"
 import "./MyExhibits.css"
 
 const MyExhibits = () => {
-    const { posts, getPostsByUser, deletePost } = useContext(PostContext);
+    const { posts, getPostsByUser, deletePost, postWasEdited, setPostWasEdited } = useContext(PostContext);
     const { exhibits, getPostExhibits } = useContext(ExhibitContext);
     // const { toggle, timeToToggle } = useContext(CommentContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
@@ -18,7 +18,7 @@ const MyExhibits = () => {
             .then((postResponse) => {
                 getPostExhibits(postResponse)
             })
-    }, [toggle]);
+    }, [toggle, postWasEdited]);
 
     const PostTitle = (objectID) => {
         const linkedTitle = posts.find((post) => {

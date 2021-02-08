@@ -7,7 +7,7 @@ import "./PostEditor.css"
 
 const PostEditor = (post) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
-    const { posts, getPostsByUser, deletePost, editPost } = useContext(PostContext);
+    const { posts, getPostsByUser, deletePost, editPost, postWasEdited, setPostWasEdited } = useContext(PostContext);
     const { timeToToggle } = useContext(CommentContext);
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const PostEditor = (post) => {
         editPost(editedPost)
             .then(() => {
                 post = editedPost
-                timeToToggle()
+                setPostWasEdited(postWasEdited + 1)
             })
     }
 
