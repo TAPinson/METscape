@@ -110,8 +110,10 @@ const MyExhibitCard = ({ exhibit }) => {
                     <div>{comment.content}</div>
                     <div>{comment.dateCreated}</div>
                     <div>Author: {comment.commentAuthor}</div>
-                    <DeleteButton comment={comment} />
-                    <CommentEditButton comment={comment} />
+                    <div className="myexhibits-comment-controls">
+                        <DeleteButton comment={comment} />
+                        <CommentEditButton comment={comment} />
+                    </div>
                 </div>
             })}
         </div>

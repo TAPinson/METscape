@@ -44,3 +44,11 @@
 .comment-edit-button {
     cursor: pointer;
 }
+
+.myexhibits-comment-controls {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    float: right;
+    margin-top: -1rem;
+}
