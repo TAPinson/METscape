@@ -15,10 +15,7 @@ const PostEditor = (post) => {
     }, []);
 
     let editedPost = {
-        id: post.post.id,
-        metId: post.post.metId,
-        dateCreated: post.post.dateCreated,
-        userProfileId: post.post.userProfileId
+
     }
 
     const handlePostUpdate = (event) => {
@@ -26,6 +23,10 @@ const PostEditor = (post) => {
     }
 
     const postUpdater = (post) => {
+        editedPost.id = post.post.id
+        editedPost.metId = post.post.metId
+        editedPost.dateCreated = post.post.dateCreated
+        editedPost.userProfileId = post.post.userProfileId
         if (editedPost.content === undefined) {
             editedPost.content = post.post.content
         }
@@ -37,6 +38,10 @@ const PostEditor = (post) => {
                 post = editedPost
                 setPostWasEdited(postWasEdited + 1)
             })
+    }
+
+    if (post.post === undefined) {
+        return null
     }
 
     return (
