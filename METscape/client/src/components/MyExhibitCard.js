@@ -5,9 +5,10 @@ import { CommentEditButton } from "./CommentEditor"
 import "./ExhibitCard.css"
 
 const MyExhibitCard = ({ exhibit }) => {
-    const { posts } = useContext(PostContext);
-    const { addComment, getCommentsByPost, deleteComment, toggle, timeToToggle } = useContext(CommentContext);
+    const { posts, postWasEdited } = useContext(PostContext);
+    const { addComment, getCommentsByPost, deleteComment } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
+    const [toggle, setToggle] = useState(0)
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
 
     useEffect(() => {
@@ -54,7 +55,7 @@ const MyExhibitCard = ({ exhibit }) => {
         })
         newComment.postId = linkedContent.id
         addComment(newComment)
-            .then(timeToToggle())
+            .then(setToggle(toggle + 1))
     }
 
     const CommentContainer = (objectID) => {
@@ -69,7 +70,7 @@ const MyExhibitCard = ({ exhibit }) => {
     // Delete Comment Code
     const removeComment = (id) => {
         deleteComment(id)
-            .then(timeToToggle())
+            .then(setToggle(toggle + 1))
     }
 
     const DeleteButton = (comment) => {

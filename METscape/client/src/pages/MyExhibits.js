@@ -9,8 +9,9 @@ import "./MyExhibits.css"
 const MyExhibits = () => {
     const { posts, getPostsByUser, deletePost } = useContext(PostContext);
     const { exhibits, getPostExhibits } = useContext(ExhibitContext);
-    const { toggle, timeToToggle } = useContext(CommentContext);
+    // const { toggle, timeToToggle } = useContext(CommentContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
+    const [toggle, setToggle] = useState(0);
 
     useEffect(() => {
         getPostsByUser(userId)
@@ -29,21 +30,12 @@ const MyExhibits = () => {
         return linkedTitle.title
     }
 
-    const PostAuthor = (objectID) => {
-        const linkedAuthor = posts.find((post) => {
-            return post.metId === objectID.objectID
-        })
-
-        console.log(linkedAuthor.postAuthor)
-        return "hi"
-    }
-
     const removePost = (objectID) => {
         const linkedPost = posts.find((post) => {
             return post.metId === objectID
         })
         deletePost(linkedPost.id)
-            .then(() => timeToToggle())
+            .then(() => setToggle(toggle + 1))
     }
 
     const PostFinder = (objectID) => {
@@ -60,7 +52,6 @@ const MyExhibits = () => {
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <div>
                             <h2><PostTitle objectID={exhibit.objectID} /></h2>
-                            {/* <PostAuthor objectID={exhibit.objectID} /> */}
                             <PostFinder objectID={exhibit.objectID} />
                             <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>DELETE POST</div>
                         </div>
