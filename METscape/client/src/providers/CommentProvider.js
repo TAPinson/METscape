@@ -60,6 +60,7 @@ export function CommentProvider(props) {
                 deleteComment,
                 updateComment,
                 toggle,
+                setToggle,
                 timeToToggle
             }}
         >

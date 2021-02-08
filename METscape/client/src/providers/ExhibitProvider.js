@@ -54,7 +54,11 @@ export function ExhibitProvider(props) {
         posts.map((post) => {
             exhibitsCompiler(post.metId)
                 .then((resp) => {
+                    resp.id = post.id
                     retrievedObjects.push(resp)
+                    retrievedObjects.sort(function (a, b) {
+                        return a.id - b.id;
+                    });
                     setExhibits([...retrievedObjects])
                 })
         })

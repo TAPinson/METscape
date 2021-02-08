@@ -39,7 +39,8 @@ namespace METscape.Controllers
         public IActionResult GetByUserId(int id)
         {
             var posts = _postRepo.GetPostsByUser(id);
-            return Ok(posts);
+            var orderedPosts = posts.OrderBy(c => c.Id).ToList();
+            return Ok(orderedPosts);
         }
 
         [HttpGet("friendposts/{id}")]
@@ -62,6 +63,14 @@ namespace METscape.Controllers
             _commentRepo.DeleteByPost(id);
             _postRepo.Delete(id);
             return Ok();
+        }
+
+        [HttpPut("update/{id}")]
+        public IActionResult EditPost(int id, Post post)
+        {
+            _postRepo.UpdatePost(post);
+            return Ok(post);
+
         }
     }
 }

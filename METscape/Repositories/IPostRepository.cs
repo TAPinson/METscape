@@ -13,5 +13,6 @@ namespace METscape.Repositories
         List<Post> GetFriendsPosts(int id);
         Post GetPostById(int id);
         List<Post> GetPostsByUser(int userId);
+        void UpdatePost(Post post);
     }
 }

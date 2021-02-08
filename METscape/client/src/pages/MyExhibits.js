@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
+import { CommentContext } from "../providers/CommentProvider"
 import MyExhibitCard from "../components/MyExhibitCard"
 import PostEditor from "../components/PostEditor"
 import "./MyExhibits.css"
@@ -8,7 +9,7 @@ import "./MyExhibits.css"
 const MyExhibits = () => {
     const { posts, getPostsByUser, deletePost } = useContext(PostContext);
     const { exhibits, getPostExhibits } = useContext(ExhibitContext);
-    const [toggle, setToggle] = useState(0)
+    const { toggle, timeToToggle } = useContext(CommentContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
 
     useEffect(() => {
@@ -33,7 +34,7 @@ const MyExhibits = () => {
             return post.metId === objectID
         })
         deletePost(linkedPost.id)
-            .then(() => setToggle(toggle + 1))
+            .then(() => timeToToggle())
     }
 
     const PostFinder = (objectID) => {
@@ -41,10 +42,7 @@ const MyExhibits = () => {
             return post.metId === objectID.objectID
         })
         return <PostEditor post={linkedPost} />
-
     }
-
-
 
     return (
         <div >
@@ -53,12 +51,10 @@ const MyExhibits = () => {
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <div>
                             <h2><PostTitle objectID={exhibit.objectID} /></h2>
-                            {/* <PostEditor exhibit={exhibit} /> */}
                             <PostFinder objectID={exhibit.objectID} />
                             <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>DELETE POST</div>
                         </div>
                         <MyExhibitCard exhibit={exhibit} />
-
                     </div>
                 )
             })}

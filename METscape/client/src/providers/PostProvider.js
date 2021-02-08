@@ -67,14 +67,13 @@ export function PostProvider(props) {
     }
 
     const editPost = (post) => {
-        return fetch(`${apiUrl}/edit/${post.id}`, {
+        return fetch(`${apiUrl}/update/${post.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(post)
         })
-
     }
 
     return (
@@ -91,7 +90,7 @@ export function PostProvider(props) {
                 getPostsByFriend,
                 getFriendsPosts,
                 deletePost,
-                editPost
+                editPost,
             }}
         >
             {props.children}

@@ -53,7 +53,7 @@ const MyExhibitCard = ({ exhibit }) => {
         })
         newComment.postId = linkedContent.id
         addComment(newComment)
-            .then(timeToToggle)
+            .then(timeToToggle())
     }
 
     const CommentContainer = (objectID) => {

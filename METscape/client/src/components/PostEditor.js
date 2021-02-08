@@ -1,11 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
 import { PostContext } from "../providers/PostProvider";
+import { CommentContext } from "../providers/CommentProvider"
 import { ExhibitContext } from "../providers/ExhibitProvider";
 import Modal from 'react-modal'
 import "./PostEditor.css"
 
 const PostEditor = (post) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const { posts, getPostsByUser, deletePost, editPost } = useContext(PostContext);
+    const { timeToToggle } = useContext(CommentContext);
 
     useEffect(() => {
 
@@ -29,7 +32,11 @@ const PostEditor = (post) => {
         if (editedPost.title === undefined) {
             editedPost.title = post.post.title
         }
-        console.log(editedPost)
+        editPost(editedPost)
+            .then(() => {
+                post = editedPost
+                timeToToggle()
+            })
     }
 
     return (
