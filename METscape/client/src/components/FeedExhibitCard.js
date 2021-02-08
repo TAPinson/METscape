@@ -3,7 +3,7 @@ import { PostContext } from "../providers/PostProvider";
 import { CommentContext } from "../providers/CommentProvider"
 import "./ExhibitCard.css"
 import Modal from 'react-modal'
-import { EditButton } from "./CommentEditor"
+import { CommentEditButton } from "./CommentEditor"
 
 const FeedExhibitCard = ({ exhibit }) => {
     const { addPost, posts } = useContext(PostContext);
@@ -134,7 +134,7 @@ const FeedExhibitCard = ({ exhibit }) => {
                     return <div key={comment.id} className="initial-comment">
                         <div>{comment.content}</div><div>{comment.dateCreated}</div>
                         <DeleteButton comment={comment} />
-                        <EditButton comment={comment} />
+                        <CommentEditButton comment={comment} />
                     </div>
                 })}
             </div>

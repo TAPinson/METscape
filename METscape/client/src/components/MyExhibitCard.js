@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CommentContext } from "../providers/CommentProvider"
 import { PostContext } from "../providers/PostProvider";
-import { EditButton } from "./CommentEditor"
+import { CommentEditButton } from "./CommentEditor"
 import "./ExhibitCard.css"
 
 const MyExhibitCard = ({ exhibit }) => {
@@ -108,7 +108,7 @@ const MyExhibitCard = ({ exhibit }) => {
                     <div>{comment.content}</div>
                     <div>{comment.dateCreated}</div>
                     <DeleteButton comment={comment} />
-                    <EditButton comment={comment} />
+                    <CommentEditButton comment={comment} />
                 </div>
             })}
         </div>

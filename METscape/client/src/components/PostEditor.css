@@ -1,0 +1,10 @@
+.post-edit-button {
+    border: 1px solid;
+    border-radius: 12px;
+    width: 10%;
+    float: right;
+    margin-top: -2rem;
+    margin-right: 10rem;
+    background-color: blanchedalmond;
+    cursor: pointer;
+}

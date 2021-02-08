@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Modal from 'react-modal'
 import { CommentContext } from "../providers/CommentProvider"
 
-export const EditButton = (comment) => {
+export const CommentEditButton = (comment) => {
     const { updateComment, timeToToggle } = useContext(CommentContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -28,7 +28,7 @@ export const EditButton = (comment) => {
                     setModalIsOpen(true)
                 }}>📝
             </div>
-                <Modal className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                <Modal ariaHideApp={false} className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                     <h2>Comment</h2>
                     <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleCommentUpdate} />
 

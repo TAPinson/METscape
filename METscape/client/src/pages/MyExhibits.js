@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
 import MyExhibitCard from "../components/MyExhibitCard"
+import PostEditor from "../components/PostEditor"
 import "./MyExhibits.css"
 
 const MyExhibits = () => {
@@ -35,6 +36,16 @@ const MyExhibits = () => {
             .then(() => setToggle(toggle + 1))
     }
 
+    const PostFinder = (objectID) => {
+        const linkedPost = posts.find((post) => {
+            return post.metId === objectID.objectID
+        })
+        return <PostEditor post={linkedPost} />
+
+    }
+
+
+
     return (
         <div >
             {exhibits.map((exhibit) => {
@@ -42,9 +53,12 @@ const MyExhibits = () => {
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <div>
                             <h2><PostTitle objectID={exhibit.objectID} /></h2>
+                            {/* <PostEditor exhibit={exhibit} /> */}
+                            <PostFinder objectID={exhibit.objectID} />
                             <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>DELETE POST</div>
                         </div>
                         <MyExhibitCard exhibit={exhibit} />
+
                     </div>
                 )
             })}

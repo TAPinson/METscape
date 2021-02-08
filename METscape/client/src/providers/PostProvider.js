@@ -35,7 +35,6 @@ export function PostProvider(props) {
         return fetch(`${apiUrl}/userposts/${id}`)
             .then((res) => res.json())
             .then((resp) => {
-                //setPosts(resp)
                 return resp
             })
     }
@@ -67,6 +66,17 @@ export function PostProvider(props) {
         })
     }
 
+    const editPost = (post) => {
+        return fetch(`${apiUrl}/edit/${post.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        })
+
+    }
+
     return (
         <PostContext.Provider
             value={{
@@ -80,7 +90,8 @@ export function PostProvider(props) {
                 getPostsByUser,
                 getPostsByFriend,
                 getFriendsPosts,
-                deletePost
+                deletePost,
+                editPost
             }}
         >
             {props.children}
