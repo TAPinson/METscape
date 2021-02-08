@@ -37,6 +37,7 @@ const FeedExhibitCard = ({ exhibit }) => {
             <div className="initial-comment">
                 <div>{linkedContent.content}</div>
                 <div>{linkedContent.dateCreated}</div>
+                <div>Author: {linkedContent.postAuthor}</div>
             </div>
         )
     }
@@ -132,7 +133,9 @@ const FeedExhibitCard = ({ exhibit }) => {
             <div>
                 {comments.map((comment) => {
                     return <div key={comment.id} className="initial-comment">
-                        <div>{comment.content}</div><div>{comment.dateCreated}</div>
+                        <div>{comment.content}</div>
+                        <div>{comment.dateCreated}</div>
+                        <div>{comment.commentAuthor}</div>
                         <DeleteButton comment={comment} />
                         <CommentEditButton comment={comment} />
                     </div>

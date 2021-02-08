@@ -29,6 +29,15 @@ const MyExhibits = () => {
         return linkedTitle.title
     }
 
+    const PostAuthor = (objectID) => {
+        const linkedAuthor = posts.find((post) => {
+            return post.metId === objectID.objectID
+        })
+
+        console.log(linkedAuthor.postAuthor)
+        return "hi"
+    }
+
     const removePost = (objectID) => {
         const linkedPost = posts.find((post) => {
             return post.metId === objectID
@@ -51,6 +60,7 @@ const MyExhibits = () => {
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <div>
                             <h2><PostTitle objectID={exhibit.objectID} /></h2>
+                            {/* <PostAuthor objectID={exhibit.objectID} /> */}
                             <PostFinder objectID={exhibit.objectID} />
                             <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>DELETE POST</div>
                         </div>

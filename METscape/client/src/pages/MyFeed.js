@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
 import FeedExhibitCard from "../components/FeedExhibitCard"
+import "./MyFeed.css"
 
 const MyFeed = () => {
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
@@ -21,12 +22,21 @@ const MyFeed = () => {
         return linkedTitle.title
     }
 
+    const PostAuthor = (objectID) => {
+        const linkedAuthor = posts.find((post) => {
+            return post.metId === objectID.objectID
+        })
+
+        return <div className="myfeed-post-author">Posted By: {linkedAuthor.postAuthor}</div>
+    }
+
     return (
         <div >
             {exhibits.map((exhibit) => {
                 return (
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <h2><PostTitle objectID={exhibit.objectID} /></h2>
+                        <PostAuthor objectID={exhibit.objectID} />
                         <FeedExhibitCard exhibit={exhibit} />
                     </div>
                 )

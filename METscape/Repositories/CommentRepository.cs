@@ -43,8 +43,9 @@ namespace METscape.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    SELECT Id, PostId, Content, UserProfileId, DateCreated
+                    SELECT Comment.Id, PostId, Content, UserProfileId, DateCreated, UserProfile.UserName as CommentAuthor
                     FROM Comment
+                    JOIN UserProfile ON Comment.UserProfileId = UserProfile.ID
                     WHERE PostId = @postId";
                     cmd.Parameters.AddWithValue("@postId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -57,7 +58,8 @@ namespace METscape.Repositories
                             PostId = reader.GetInt32(reader.GetOrdinal("PostId")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileID")),
-                            DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated"))
+                            DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
+                            CommentAuthor = reader.GetString(reader.GetOrdinal("CommentAuthor"))
                         };
                         comments.Add(comment);
                     }

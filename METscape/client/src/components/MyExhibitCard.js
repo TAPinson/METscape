@@ -25,6 +25,7 @@ const MyExhibitCard = ({ exhibit }) => {
             <div className="initial-comment">
                 <div>{linkedContent.content}</div>
                 <div>{linkedContent.dateCreated}</div>
+                <div>Author: {linkedContent.postAuthor}</div>
             </div>
         )
     }
@@ -107,6 +108,7 @@ const MyExhibitCard = ({ exhibit }) => {
                 return <div key={comment.id} className="initial-comment">
                     <div>{comment.content}</div>
                     <div>{comment.dateCreated}</div>
+                    <div>Author: {comment.commentAuthor}</div>
                     <DeleteButton comment={comment} />
                     <CommentEditButton comment={comment} />
                 </div>

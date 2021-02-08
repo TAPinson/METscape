@@ -78,8 +78,9 @@ namespace METscape.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    SELECT Id, MetId, DateCreated, UserProfileId, Title, Content
+                    SELECT Post.Id, MetId, DateCreated, UserProfileId, Title, Content, UserProfile.UserName as PostAuthor
                     FROM Post
+                    JOIN UserProfile ON Post.UserProfileId = UserProfile.Id
                     WHERE UserProfileId = @userId";
 
                     cmd.Parameters.AddWithValue("@userId", id);
@@ -94,7 +95,8 @@ namespace METscape.Repositories
                             DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
                             UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
-                            Content = reader.GetString(reader.GetOrdinal("Content"))
+                            Content = reader.GetString(reader.GetOrdinal("Content")),
+                            PostAuthor = reader.GetString(reader.GetOrdinal("PostAuthor"))
                         };
                         posts.Add(post);
                     }
@@ -112,8 +114,10 @@ namespace METscape.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    SELECT Id, MetId, DateCreated, UserProfileId, Title, Content 
-                    FROM Post where UserProfileId in (
+                    SELECT Post.Id, MetId, DateCreated, UserProfileId, Title, Content, UserProfile.UserName as PostAuthor 
+                    FROM Post 
+                    JOIN UserProfile ON Post.UserProfileId = UserProfile.Id
+                    WHERE UserProfileId in (
                     SELECT * from 
                     (select ApproverId as UserProfileId from Friendship where InitiatorId = @id) as A
                     union
@@ -130,7 +134,8 @@ namespace METscape.Repositories
                             DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
                             UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
-                            Content = reader.GetString(reader.GetOrdinal("Content"))
+                            Content = reader.GetString(reader.GetOrdinal("Content")),
+                            PostAuthor = reader.GetString(reader.GetOrdinal("PostAuthor"))
                         };
                         posts.Add(post);
                     }

@@ -18,6 +18,8 @@ namespace METscape.Models
 
         public int UserProfileId { get; set; }
 
-        public DateTime DateCreated { get; set; }        
+        public DateTime DateCreated { get; set; }
+        
+        public string CommentAuthor { get; set; }
     }
 }
