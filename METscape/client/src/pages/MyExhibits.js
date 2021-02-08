@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
 import { CommentContext } from "../providers/CommentProvider"
+// import { UserProfileContext } from "../providers/UserProfileProvider"
 import MyExhibitCard from "../components/MyExhibitCard"
 import PostEditor from "../components/PostEditor"
 import "./MyExhibits.css"
@@ -9,7 +10,7 @@ import "./MyExhibits.css"
 const MyExhibits = () => {
     const { posts, getPostsByUser, deletePost, postWasEdited, setPostWasEdited } = useContext(PostContext);
     const { exhibits, getPostExhibits } = useContext(ExhibitContext);
-    // const { toggle, timeToToggle } = useContext(CommentContext);
+    // const { getToken } = useContext(UserProfileContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [toggle, setToggle] = useState(0);
 

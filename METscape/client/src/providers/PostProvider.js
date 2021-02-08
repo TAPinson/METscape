@@ -1,94 +1,95 @@
-import React, { useState, createContext } from "react";
-
+import React, { useState, createContext, useContext } from "react";
+import { UserProfileContext } from "./UserProfileProvider"
 
 export const PostContext = createContext();
 
 export function PostProvider(props) {
-
-    const apiUrl = "/api/post";
-
+    const { getToken } = useContext(UserProfileContext)
     const [posts, setPosts] = useState([]);
     const [post, setPost] = useState([]);
     const [postWasEdited, setPostWasEdited] = useState(0);
-
-    const getPostById = (id) => {
-        fetch(`${apiUrl}/${id}`)
-            .then((res) => res.json())
-            .then((resp) => setPost(resp))
-    }
-
-    const getAllPosts = () => {
-        fetch(`${apiUrl}`)
-            .then((res) => res.json())
-            .then((resp) => setPosts(resp))
-    }
+    const apiUrl = "/api/post";
 
     const getPostsByUser = (id) => {
-        return fetch(`${apiUrl}/userposts/${id}`)
-            .then((res) => res.json())
-            .then((resp) => {
-                setPosts(resp)
-                return resp
+        return getToken().then((token) => {
+            return fetch(`${apiUrl}/userposts/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             })
-    }
-
-    const getPostsByFriend = (id) => {
-        return fetch(`${apiUrl}/userposts/${id}`)
-            .then((res) => res.json())
-            .then((resp) => {
-                return resp
-            })
+                .then((res) => res.json())
+                .then((resp) => {
+                    setPosts(resp)
+                    return resp
+                })
+        });
     }
 
     const getFriendsPosts = (id) => {
-        return fetch(`${apiUrl}/friendposts/${id}`)
-            .then((res) => res.json())
-            .then((resp) => {
-                setPosts(resp)
-                return resp
+        return getToken().then((token) => {
+            return fetch(`${apiUrl}/friendposts/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             })
+                .then((res) => res.json())
+                .then((resp) => {
+                    setPosts(resp)
+                    return resp
+                })
+        })
     }
 
     const addPost = (post) => {
         const userId = JSON.parse(localStorage.getItem('userProfile')).id;
         post.userProfileId = userId
-        return fetch(`${apiUrl}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(post)
+        getToken().then((token) => {
+            return fetch(`${apiUrl}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(post)
+            })
         })
     }
 
     const deletePost = (id) => {
-        return fetch(`${apiUrl}/delete/${id}`, {
-            method: "DELETE"
+        return getToken().then((token) => {
+            return fetch(`${apiUrl}/delete/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
         })
     }
 
     const editPost = (post) => {
-        return fetch(`${apiUrl}/update/${post.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(post)
+        return getToken().then((token) => {
+            return fetch(`${apiUrl}/update/${post.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(post)
+            })
         })
     }
 
     return (
         <PostContext.Provider
             value={{
-                getPostById,
                 post,
                 setPost,
                 setPosts,
-                getAllPosts,
                 posts,
                 addPost,
                 getPostsByUser,
-                getPostsByFriend,
                 getFriendsPosts,
                 deletePost,
                 editPost,
