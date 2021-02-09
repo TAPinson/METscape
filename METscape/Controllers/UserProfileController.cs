@@ -1,4 +1,5 @@
 ﻿using METscape.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,6 +28,7 @@ namespace METscape.Controllers
         }
 
         [HttpGet("users")]
+        [Authorize]
         public IActionResult GetAllUsers()
         {
             var users = _userRepo.GetAllUsers();

@@ -33,7 +33,6 @@ export function UserProfileProvider(props) {
                 } else {
                     return null;
                 }
-
             });
     };
 
