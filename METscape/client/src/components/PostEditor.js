@@ -41,19 +41,19 @@ const PostEditor = (post) => {
             <div className="post-edit-button" onClick={() => setModalIsOpen(true)}>📝</div>
             <Modal ariaHideApp={false} className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <h2>Content</h2>
-                <input type="text" className="modalInput" defaultValue={post.post.content} name="content" onChange={handlePostUpdate} />
-
-                <button onClick={evt => {
-                    evt.preventDefault()
-                    postUpdater(post)
-                    setModalIsOpen(false)
-                }}>Save
+                <div className="modal-stuff">
+                    <input type="text" className="modalInput" defaultValue={post.post.content} name="content" onChange={handlePostUpdate} />
+                    <button className="modal-save-button" onClick={evt => {
+                        evt.preventDefault()
+                        postUpdater(post)
+                        setModalIsOpen(false)
+                    }}>Save
                     </button>
-                <div>
-                    <button className="modalClose" onClick={() => setModalIsOpen(false)}>Close</button>
+                    <div>
+                        <button className="modalClose" onClick={() => setModalIsOpen(false)}>Close</button>
+                    </div>
                 </div>
             </Modal>
-
         </div >
     );
 };

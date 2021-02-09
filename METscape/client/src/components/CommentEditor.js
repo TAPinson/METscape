@@ -29,17 +29,19 @@ export const CommentEditButton = (comment) => {
                 }}>📝
             </div>
                 <Modal ariaHideApp={false} className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                    <h2>Comment</h2>
-                    <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleCommentUpdate} />
+                    <h2>Comment:</h2>
+                    <div className="modal-stuff">
+                        <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleCommentUpdate} />
 
-                    <button onClick={evt => {
-                        evt.preventDefault()
-                        commentUpdater(comment)
-                        setModalIsOpen(false)
-                    }}>Save
+                        <button className="modal-save-button" onClick={evt => {
+                            evt.preventDefault()
+                            commentUpdater(comment)
+                            setModalIsOpen(false)
+                        }}>Save
                     </button>
-                    <div>
-                        <button className="modalClose" onClick={() => setModalIsOpen(false)}>Close</button>
+                        <div>
+                            <button className="modalClose" onClick={() => setModalIsOpen(false)}>Close</button>
+                        </div>
                     </div>
                 </Modal>
             </>

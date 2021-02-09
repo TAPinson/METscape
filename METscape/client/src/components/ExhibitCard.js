@@ -35,17 +35,19 @@ const ExhibitCard = ({ exhibit }) => {
 
                     <Modal className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
 
-                        <h2>Post Message</h2>
-                        <input type="text" className="modalInput" id="content" onChange={handleContentUpdate} />
+                        <h2>Conversation Starter:</h2>
+                        <div className="modal-stuff">
+                            <input type="text" className="modalInput" id="content" onChange={handleContentUpdate} />
 
-                        <button onClick={evt => {
-                            evt.preventDefault()
-                            postCreator()
-                            setModalIsOpen(false)
-                        }}>Save
+                            <button className="modal-save-button" onClick={evt => {
+                                evt.preventDefault()
+                                postCreator()
+                                setModalIsOpen(false)
+                            }}>Save
                                     </button>
-                        <div>
-                            <button className="modalClose" onClick={() => setModalIsOpen(false)}>Close</button>
+                            <div>
+                                <button className="modalClose" onClick={() => setModalIsOpen(false)}>Close</button>
+                            </div>
                         </div>
                     </Modal>
 

@@ -33,9 +33,23 @@
 .postModal {
     margin: auto;
     margin-top: 25em;
-    width: 30%;
+    width: 40%;
     background-color: white;
     border: 1px solid;
+    padding: 1rem;
+}
+
+.modal-stuff {
+    display: flex;
+}
+
+.modalInput {
+    width: 80%;
+    margin-right: 2rem;
+}
+
+.modal-save-button {
+    margin-right: 1rem;
 }
 
 .comment-delete-button {
@@ -53,3 +67,4 @@
     float: right;
     margin-top: -1rem;
 }
+
