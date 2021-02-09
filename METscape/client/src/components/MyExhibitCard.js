@@ -3,6 +3,7 @@ import { CommentContext } from "../providers/CommentProvider"
 import { PostContext } from "../providers/PostProvider";
 import { CommentEditButton } from "./CommentEditor"
 import "./ExhibitCard.css"
+import PostEditor from "./PostEditor"
 
 const MyExhibitCard = ({ exhibit }) => {
     const { posts, postWasEdited } = useContext(PostContext);
@@ -15,6 +16,13 @@ const MyExhibitCard = ({ exhibit }) => {
         commentsFinder()
     }, [toggle]);
 
+    const PostFinder = (objectID) => {
+        const linkedPost = posts.find((post) => {
+            return post.metId === objectID.objectID
+        })
+        return <PostEditor post={linkedPost} />
+    }
+
     const InitialComment = (objectID) => {
         const linkedContent = posts.find((post) => {
             return post.metId === objectID.objectID
@@ -26,6 +34,7 @@ const MyExhibitCard = ({ exhibit }) => {
             <div className="initial-comment">
                 <div>{linkedContent.content}</div>
                 <div>{linkedContent.postAuthor} - {linkedContent.dateCreated}</div>
+                <PostFinder objectID={exhibit.objectID} />
             </div>
         )
     }

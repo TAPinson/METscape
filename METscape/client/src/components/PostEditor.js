@@ -38,7 +38,7 @@ const PostEditor = (post) => {
 
     return (
         <div >
-            <div className="post-edit-button" onClick={() => setModalIsOpen(true)}>Edit Post</div>
+            <div className="post-edit-button" onClick={() => setModalIsOpen(true)}>📝</div>
             <Modal ariaHideApp={false} className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <h2>Content</h2>
                 <input type="text" className="modalInput" defaultValue={post.post.content} name="content" onChange={handlePostUpdate} />

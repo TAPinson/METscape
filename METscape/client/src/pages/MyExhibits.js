@@ -21,16 +21,6 @@ const MyExhibits = () => {
             })
     }, [toggle, postWasEdited]);
 
-    // const PostTitle = (objectID) => {
-    //     const linkedTitle = posts.find((post) => {
-    //         return post.metId === objectID.objectID
-    //     })
-    //     if (linkedTitle === undefined) {
-    //         return null
-    //     }
-    //     return linkedTitle.title
-    // }
-
     const removePost = (objectID) => {
         const linkedPost = posts.find((post) => {
             return post.metId === objectID
@@ -39,12 +29,12 @@ const MyExhibits = () => {
             .then(() => setToggle(toggle + 1))
     }
 
-    const PostFinder = (objectID) => {
-        const linkedPost = posts.find((post) => {
-            return post.metId === objectID.objectID
-        })
-        return <PostEditor post={linkedPost} />
-    }
+    // const PostFinder = (objectID) => {
+    //     const linkedPost = posts.find((post) => {
+    //         return post.metId === objectID.objectID
+    //     })
+    //     return <PostEditor post={linkedPost} />
+    // }
 
     return (
         <div className="view-container">
@@ -52,9 +42,8 @@ const MyExhibits = () => {
                 return (
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <div>
-                            {/* <h2><PostTitle objectID={exhibit.objectID} /></h2> */}
-                            <PostFinder objectID={exhibit.objectID} />
-                            <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>DELETE POST</div>
+                            {/* <PostFinder objectID={exhibit.objectID} /> */}
+                            <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>Delete Post</div>
                         </div>
                         <MyExhibitCard exhibit={exhibit} />
                     </div>
