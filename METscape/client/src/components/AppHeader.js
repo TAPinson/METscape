@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 import { UserProfileContext } from '../providers/UserProfileProvider';
 import './AppHeader.css';
+import logo from "../images/logo.png";
 
 const AppHeader = () => {
     const { getCurrentUser, logout } = useContext(UserProfileContext);
@@ -32,14 +33,13 @@ const AppHeader = () => {
         <div>
             <Navbar dark expand="md">
                 <NavbarBrand tag={Link} to="/">
-                    {/* <img
+                    <img
                         id="header-logo"
-                        src='../images/logo.png'
-                        width="30"
-                        height="30"
-                        className="mr-2"
+                        src={logo}
+                        height="120"
+                        className="mr-2 site-logo-img"
                         alt="Logo"
-                    /> */}
+                    />
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Nav className="ml-auto" navbar>

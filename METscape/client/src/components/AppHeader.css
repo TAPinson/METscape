@@ -4,12 +4,10 @@
 
 .navbar-nav > li{
   margin-right:5rem;
-
 }
 
 .navbar-spacer {
-    width: 1000px;
-    
+    width: 55rem;
 }
 
 .navbar {
@@ -19,4 +17,10 @@
 a, .navbar-text {
   font-weight: 600;
    color:rgb(55, 47, 45) !important;
+}
+
+.site-logo-img {
+  margin-top: -4rem;
+  margin-bottom: -4rem;
+  margin-left: -2rem;
 }
