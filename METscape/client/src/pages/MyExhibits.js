@@ -5,7 +5,7 @@ import MyExhibitCard from "../components/MyExhibitCard"
 import "./MyExhibits.css"
 
 const MyExhibits = () => {
-    const { posts, getPostsByUser, deletePost, postWasEdited, setPostWasEdited } = useContext(PostContext);
+    const { posts, getPostsByUser, deletePost, postWasEdited } = useContext(PostContext);
     const { exhibits, getPostExhibits } = useContext(ExhibitContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [toggle, setToggle] = useState(0);

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { PostContext } from "../providers/PostProvider";
 import Modal from 'react-modal'
 import "./PostEditor.css"
@@ -6,10 +6,6 @@ import "./PostEditor.css"
 const PostEditor = (post) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const { editPost, postWasEdited, setPostWasEdited } = useContext(PostContext);
-
-    useEffect(() => {
-
-    }, []);
 
     let editedPost = {}
 

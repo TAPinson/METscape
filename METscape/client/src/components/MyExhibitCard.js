@@ -6,7 +6,7 @@ import "./ExhibitCard.css"
 import PostEditor from "./PostEditor"
 
 const MyExhibitCard = ({ exhibit }) => {
-    const { posts, postWasEdited } = useContext(PostContext);
+    const { posts } = useContext(PostContext);
     const { addComment, getCommentsByPost, deleteComment } = useContext(CommentContext);
     const [comments, setComments] = useState([]);
     const [toggle, setToggle] = useState(0)
