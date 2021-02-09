@@ -8,10 +8,22 @@
     margin: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 6rem;
+    padding-top: 5rem;
     padding-bottom: 3rem;
     border: 1px solid;
     width: 15%;
     cursor: pointer;
     background-color: rgb(200, 199, 181);
+    font-weight: 700;
+    font-size: 1.3rem;
+    box-shadow: 0 6px #999;
+}
+
+.department-card:hover {
+    background-color: rgb(191, 167, 127);
+}
+
+.department-card:active {
+    box-shadow: 0 2px #666;
+  transform: translateY(4px);
 }
