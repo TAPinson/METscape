@@ -53,6 +53,13 @@
     margin-bottom: 1.5rem;
 }
 
+/* Comment Stuff */
+
+.comment-container {
+    max-height: 23rem;
+    overflow-y: auto;
+}
+
 .comment-delete-button {
     cursor: pointer;
 }

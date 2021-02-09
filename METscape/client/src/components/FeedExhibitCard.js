@@ -128,8 +128,9 @@ const FeedExhibitCard = ({ exhibit }) => {
                     </div>
                 </div>
             </div>
-            <InitialComment objectID={exhibit.objectID} />
-            <div>
+
+            <div className="comment-container">
+                <InitialComment objectID={exhibit.objectID} />
                 {comments.map((comment) => {
                     return <div key={comment.id} className="initial-comment">
                         <div>{comment.content}</div>
