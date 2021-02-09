@@ -54,7 +54,7 @@ const FriendManager = () => {
     }
 
     return (
-        <>
+        <div className="view-container">
             <h2>Users</h2>
             <div className="user-card-container">
                 {users.map((user) => {
@@ -72,7 +72,7 @@ const FriendManager = () => {
                     }
                 })}
             </div>
-        </>
+        </div>
     );
 };
 

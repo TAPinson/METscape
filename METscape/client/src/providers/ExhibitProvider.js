@@ -34,7 +34,17 @@ export function ExhibitProvider(props) {
         fetch(`https:/collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=${id}`)
             .then((res) => res.json())
             .then((resp) => {
-                let getTwenty = resp.objectIDs.slice(0, 20)
+                //This is where we will do the randomization
+                //But first we need to find a way to figure out if we can search these until we get 20 with photos somehow
+                //Randomness is working
+
+
+                // Random number in the length of the result objectIDs array
+                let randomTwenty = Math.floor(Math.random() * resp.objectIDs.length) + 1
+                let twentyBelow = randomTwenty - 20
+                let getTwenty = resp.objectIDs.slice(twentyBelow, randomTwenty)
+
+
                 let retrievedObjects = []
                 setExhibits([])
                 getTwenty.map((metObj) => {

@@ -7,7 +7,6 @@ const ExhibitCard = ({ exhibit }) => {
     const { addPost } = useContext(PostContext);
     const [modalIsOpen, setModalIsOpen] = useState(false)
     Modal.setAppElement('#root')
-
     let newPost = {}
 
     const handleContentUpdate = (event) => {
@@ -25,7 +24,10 @@ const ExhibitCard = ({ exhibit }) => {
                 <h3> {exhibit.title} </h3>
                 <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
                 <div>
-                    From: {exhibit.country} <br />
+                    Artist: {exhibit.artistDisplayName} <br />
+                    {exhibit.artistDisplayBio} <br />
+                    <hr />
+
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />
                     Medium: {exhibit.medium} <br />

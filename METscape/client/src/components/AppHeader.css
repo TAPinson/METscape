@@ -11,3 +11,12 @@
     width: 1000px;
     
 }
+
+.navbar {
+  background-color: rgb(191, 167, 127);
+}
+
+a, .navbar-text {
+  font-weight: 600;
+   color:rgb(55, 47, 45) !important;
+}

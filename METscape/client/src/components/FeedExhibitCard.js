@@ -36,8 +36,7 @@ const FeedExhibitCard = ({ exhibit }) => {
         return (
             <div className="initial-comment">
                 <div>{linkedContent.content}</div>
-                <div>{linkedContent.dateCreated}</div>
-                <div>Author: {linkedContent.postAuthor}</div>
+                <div>{linkedContent.postAuthor} - {linkedContent.dateCreated}</div>
             </div>
         )
     }
@@ -103,7 +102,10 @@ const FeedExhibitCard = ({ exhibit }) => {
                     <h3> {exhibit.title} </h3>
                     <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
                     <div>
-                        From: {exhibit.country} <br />
+                        Artist: {exhibit.artistDisplayName} <br />
+                        {exhibit.artistDisplayBio} <br />
+                        <hr />
+
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />
                     Medium: {exhibit.medium} <br />
@@ -134,8 +136,7 @@ const FeedExhibitCard = ({ exhibit }) => {
                 {comments.map((comment) => {
                     return <div key={comment.id} className="initial-comment">
                         <div>{comment.content}</div>
-                        <div>{comment.dateCreated}</div>
-                        <div>{comment.commentAuthor}</div>
+                        <div>{comment.commentAuthor} - {comment.dateCreated}</div>
                         <div className="myexhibits-comment-controls">
                             <DeleteButton comment={comment} />
                             <CommentEditButton comment={comment} />

@@ -31,7 +31,7 @@ const MyFeed = () => {
     }
 
     return (
-        <div >
+        <div className="view-container">
             {exhibits.map((exhibit) => {
                 return (
                     <div key={exhibit.objectID} className="my-exhibits-container">

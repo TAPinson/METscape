@@ -1,6 +1,7 @@
 .departments-container {
     display: flex;
     flex-wrap: wrap;
+    min-height: 64.8rem;
 }
 
 .department-card {
@@ -12,4 +13,5 @@
     border: 1px solid;
     width: 15%;
     cursor: pointer;
+    background-color: rgb(200, 199, 181);
 }

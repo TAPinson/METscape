@@ -14,7 +14,7 @@ export const CategoryBrowser = () => {
     }, []);
 
     return (
-        <div className="departments-container">
+        <div className="departments-container view-container">
             {departments.map((department) => {
                 return (
                     <div className="department-card"
@@ -22,7 +22,7 @@ export const CategoryBrowser = () => {
                         onClick={() => {
                             history.push(`/departmentfeed/${department.departmentId}`)
                         }}>
-                        {department.displayName} - {department.departmentId}
+                        {department.displayName}
                     </div>
                 )
             })}
