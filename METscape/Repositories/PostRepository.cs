@@ -19,7 +19,7 @@ namespace METscape.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT Id, MetId, DateCreated, UserProfileId, Title, Content FROM Post WHERE Id = @id";
+                    cmd.CommandText = "SELECT Id, MetId, DateCreated, UserProfileId, Content FROM Post WHERE Id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if(reader.Read())
@@ -30,7 +30,6 @@ namespace METscape.Repositories
                             MetId = reader.GetInt32(reader.GetOrdinal("MetId")),
                             DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
                             UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileID")),
-                            Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content"))
                         };
                         reader.Close();
@@ -54,14 +53,13 @@ namespace METscape.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    INSERT INTO Post (MetId, DateCreated, UserProfileId, Title, Content)
+                    INSERT INTO Post (MetId, DateCreated, UserProfileId, Content)
                     OUTPUT INSERTED.ID
-                    VALUES (@metId, @dateCreated, @userProfileId, @title, @content)";
+                    VALUES (@metId, @dateCreated, @userProfileId, @content)";
 
                     cmd.Parameters.AddWithValue("@metId", post.MetId);
                     cmd.Parameters.AddWithValue("@dateCreated", DateTime.Now);
                     cmd.Parameters.AddWithValue("@userProfileId", post.UserProfileId);
-                    cmd.Parameters.AddWithValue("@title", post.Title);
                     cmd.Parameters.AddWithValue("@content", post.Content);
 
                     int id = (int)cmd.ExecuteScalar();
@@ -78,7 +76,7 @@ namespace METscape.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    SELECT Post.Id, MetId, DateCreated, UserProfileId, Title, Content, UserProfile.UserName as PostAuthor
+                    SELECT Post.Id, MetId, DateCreated, UserProfileId, Content, UserProfile.UserName as PostAuthor
                     FROM Post
                     JOIN UserProfile ON Post.UserProfileId = UserProfile.Id
                     WHERE UserProfileId = @userId";
@@ -94,7 +92,6 @@ namespace METscape.Repositories
                             MetId = reader.GetInt32(reader.GetOrdinal("MetId")),
                             DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
                             UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
-                            Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             PostAuthor = reader.GetString(reader.GetOrdinal("PostAuthor"))
                         };
@@ -114,7 +111,7 @@ namespace METscape.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    SELECT Post.Id, MetId, DateCreated, UserProfileId, Title, Content, UserProfile.UserName as PostAuthor 
+                    SELECT Post.Id, MetId, DateCreated, UserProfileId, Content, UserProfile.UserName as PostAuthor 
                     FROM Post 
                     JOIN UserProfile ON Post.UserProfileId = UserProfile.Id
                     WHERE UserProfileId in (
@@ -133,7 +130,6 @@ namespace METscape.Repositories
                             MetId = reader.GetInt32(reader.GetOrdinal("MetId")),
                             DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
                             UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
-                            Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             PostAuthor = reader.GetString(reader.GetOrdinal("PostAuthor"))
                         };
@@ -170,10 +166,8 @@ namespace METscape.Repositories
                     cmd.CommandText = @"
                     UPDATE Post
                     SET
-                        Title = @title,
                         Content = @content
                     WHERE Id = @id";
-                    cmd.Parameters.AddWithValue("@title", post.Title);
                     cmd.Parameters.AddWithValue("@content", post.Content);
                     cmd.Parameters.AddWithValue("@id", post.Id);
                     cmd.ExecuteNonQuery();

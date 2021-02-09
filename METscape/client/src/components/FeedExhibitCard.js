@@ -112,9 +112,6 @@ const FeedExhibitCard = ({ exhibit }) => {
                         <div className="post-this-button" onClick={() => setModalIsOpen(true)}>Post This</div>
 
                         <Modal className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                            <h2>Title</h2>
-                            <input type="text" className="modalInput" id="title" onChange={handleContentUpdate} />
-
                             <h2>Post Message</h2>
                             <input type="text" className="modalInput" id="content" onChange={handleContentUpdate} />
 

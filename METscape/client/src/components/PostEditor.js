@@ -1,22 +1,17 @@
 import React, { useEffect, useContext, useState } from "react";
 import { PostContext } from "../providers/PostProvider";
-import { CommentContext } from "../providers/CommentProvider"
-import { ExhibitContext } from "../providers/ExhibitProvider";
 import Modal from 'react-modal'
 import "./PostEditor.css"
 
 const PostEditor = (post) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
-    const { posts, getPostsByUser, deletePost, editPost, postWasEdited, setPostWasEdited } = useContext(PostContext);
-    const { timeToToggle } = useContext(CommentContext);
+    const { editPost, postWasEdited, setPostWasEdited } = useContext(PostContext);
 
     useEffect(() => {
 
     }, []);
 
-    let editedPost = {
-
-    }
+    let editedPost = {}
 
     const handlePostUpdate = (event) => {
         editedPost[event.target.name] = event.target.value
@@ -29,9 +24,6 @@ const PostEditor = (post) => {
         editedPost.userProfileId = post.post.userProfileId
         if (editedPost.content === undefined) {
             editedPost.content = post.post.content
-        }
-        if (editedPost.title === undefined) {
-            editedPost.title = post.post.title
         }
         editPost(editedPost)
             .then(() => {
@@ -48,9 +40,6 @@ const PostEditor = (post) => {
         <div >
             <div className="post-edit-button" onClick={() => setModalIsOpen(true)}>Edit Post</div>
             <Modal ariaHideApp={false} className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                <h2>Title</h2>
-                <input type="text" className="modalInput" defaultValue={post.post.title} name="title" onChange={handlePostUpdate} />
-
                 <h2>Content</h2>
                 <input type="text" className="modalInput" defaultValue={post.post.content} name="content" onChange={handlePostUpdate} />
 
