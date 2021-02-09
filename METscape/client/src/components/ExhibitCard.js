@@ -37,7 +37,7 @@ const ExhibitCard = ({ exhibit }) => {
 
                         <h2>Conversation Starter:</h2>
                         <div className="modal-stuff">
-                            <input type="text" className="modalInput" id="content" onChange={handleContentUpdate} />
+                            <textarea className="modalInput" id="content" onChange={handleContentUpdate} />
 
                             <button className="modal-save-button" onClick={evt => {
                                 evt.preventDefault()

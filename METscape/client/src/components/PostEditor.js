@@ -42,7 +42,7 @@ const PostEditor = (post) => {
             <Modal ariaHideApp={false} className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <h2>Content</h2>
                 <div className="modal-stuff">
-                    <input type="text" className="modalInput" defaultValue={post.post.content} name="content" onChange={handlePostUpdate} />
+                    <textarea className="modalInput" defaultValue={post.post.content} name="content" onChange={handlePostUpdate} />
                     <button className="modal-save-button" onClick={evt => {
                         evt.preventDefault()
                         postUpdater(post)

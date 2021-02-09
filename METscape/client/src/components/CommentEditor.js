@@ -7,7 +7,6 @@ export const CommentEditButton = (comment) => {
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
-
     let editedComment = []
 
     const commentUpdater = (comment) => {
@@ -31,8 +30,7 @@ export const CommentEditButton = (comment) => {
                 <Modal ariaHideApp={false} className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                     <h2>Comment:</h2>
                     <div className="modal-stuff">
-                        <input type="text" className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleCommentUpdate} />
-
+                        <textarea className="modalInput" defaultValue={comment.comment.content} name="content" onChange={handleCommentUpdate} />
                         <button className="modal-save-button" onClick={evt => {
                             evt.preventDefault()
                             commentUpdater(comment)

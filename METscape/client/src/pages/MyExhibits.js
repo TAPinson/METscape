@@ -10,7 +10,6 @@ import "./MyExhibits.css"
 const MyExhibits = () => {
     const { posts, getPostsByUser, deletePost, postWasEdited, setPostWasEdited } = useContext(PostContext);
     const { exhibits, getPostExhibits } = useContext(ExhibitContext);
-    // const { getToken } = useContext(UserProfileContext);
     const userId = JSON.parse(localStorage.getItem('userProfile')).id;
     const [toggle, setToggle] = useState(0);
 
@@ -29,20 +28,12 @@ const MyExhibits = () => {
             .then(() => setToggle(toggle + 1))
     }
 
-    // const PostFinder = (objectID) => {
-    //     const linkedPost = posts.find((post) => {
-    //         return post.metId === objectID.objectID
-    //     })
-    //     return <PostEditor post={linkedPost} />
-    // }
-
     return (
         <div className="view-container">
             {exhibits.map((exhibit) => {
                 return (
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <div>
-                            {/* <PostFinder objectID={exhibit.objectID} /> */}
                             <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>Delete Post</div>
                         </div>
                         <MyExhibitCard exhibit={exhibit} />

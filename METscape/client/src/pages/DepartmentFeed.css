@@ -2,10 +2,9 @@
     width: 10%;
     border: 1px solid;
     border-radius: 12px;
-    background-color: rgb(200, 199, 181);
+    background-color: blanchedalmond;
     margin-left: 45%;
     margin-right: 45%;
     margin-top: 1rem;
-    
-
+    cursor: pointer;
 }
