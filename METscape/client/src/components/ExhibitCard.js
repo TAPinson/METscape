@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { PostContext } from "../providers/PostProvider";
 import "./ExhibitCard.css"
 import Modal from 'react-modal'
+import placeholder from "../images/exhibit-placeholder-image.png"
 
 const ExhibitCard = ({ exhibit }) => {
     const { addPost } = useContext(PostContext);
@@ -18,11 +19,26 @@ const ExhibitCard = ({ exhibit }) => {
         addPost(newPost)
     }
 
+    const ImageProvider = (exhibit) => {
+        console.log(exhibit.exhibit)
+        if (exhibit.exhibit.primaryImage === "") {
+            return (
+                <img src={placeholder} className="exhibit-card-image" alt="exhibit representation" />
+            )
+        }
+        else {
+            return (
+                <img src={exhibit.exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
+            )
+        }
+    }
+
     return (
         <div className="exhibit-card-container">
             <div className="exhibit-card">
                 <h3> {exhibit.title} </h3>
-                <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
+                <ImageProvider exhibit={exhibit} />
+
                 <div>
                     Artist: {exhibit.artistDisplayName} <br />
                     {exhibit.artistDisplayBio} <br />
