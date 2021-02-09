@@ -105,17 +105,15 @@ const FeedExhibitCard = ({ exhibit }) => {
                         Artist: {exhibit.artistDisplayName} <br />
                         {exhibit.artistDisplayBio} <br />
                         <hr />
-
-                    Department: {exhibit.department} <br />
-                    Dimensions: {exhibit.dimensions} <br />
-                    Medium: {exhibit.medium} <br />
+                        Department: {exhibit.department} <br />
+                        Dimensions: {exhibit.dimensions} <br />
+                        Medium: {exhibit.medium} <br />
                         <div className="post-this-button" onClick={() => setModalIsOpen(true)}>Post This</div>
 
                         <Modal className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                             <h2>Post Message</h2>
                             <div className="modal-stuff">
                                 <input type="text" className="modalInput" id="content" onChange={handleContentUpdate} />
-
                                 <button className="modal-save-button" onClick={evt => {
                                     evt.preventDefault()
                                     postCreator()

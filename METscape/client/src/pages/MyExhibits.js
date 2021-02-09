@@ -1,10 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
-import { CommentContext } from "../providers/CommentProvider"
-// import { UserProfileContext } from "../providers/UserProfileProvider"
 import MyExhibitCard from "../components/MyExhibitCard"
-import PostEditor from "../components/PostEditor"
 import "./MyExhibits.css"
 
 const MyExhibits = () => {

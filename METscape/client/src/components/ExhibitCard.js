@@ -27,14 +27,11 @@ const ExhibitCard = ({ exhibit }) => {
                     Artist: {exhibit.artistDisplayName} <br />
                     {exhibit.artistDisplayBio} <br />
                     <hr />
-
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />
                     Medium: {exhibit.medium} <br />
                     <div className="post-this-button" onClick={() => setModalIsOpen(true)}>Post This</div>
-
                     <Modal className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-
                         <h2>Conversation Starter:</h2>
                         <div className="modal-stuff">
                             <textarea className="modalInput" id="content" onChange={handleContentUpdate} />
@@ -50,10 +47,7 @@ const ExhibitCard = ({ exhibit }) => {
                             </div>
                         </div>
                     </Modal>
-
-
                 </div>
-
             </div>
         </div>
     );
