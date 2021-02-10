@@ -22,6 +22,9 @@ const FeedExhibitCard = ({ exhibit }) => {
         const linkedContent = posts.find((post) => {
             return post.metId === exhibit.objectID
         })
+        if (linkedContent === undefined) {
+            return null
+        }
         getCommentsByPost(linkedContent.id)
             .then((resp) => {
                 setComments(resp)
@@ -33,6 +36,9 @@ const FeedExhibitCard = ({ exhibit }) => {
         const linkedContent = posts.find((post) => {
             return post.metId === objectID.objectID
         })
+        if (linkedContent === undefined) {
+            return null
+        }
         return (
             <div className="initial-comment">
                 <div>{linkedContent.content}</div>

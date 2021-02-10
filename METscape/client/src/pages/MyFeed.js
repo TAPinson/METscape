@@ -16,9 +16,14 @@ const MyFeed = () => {
     }, []);
 
     const PostAuthor = (objectID) => {
+
         const linkedAuthor = posts.find((post) => {
             return post.metId === objectID.objectID
         })
+
+        if (linkedAuthor === undefined) {
+            return null
+        }
         return <div className="myfeed-post-author">Posted By: {linkedAuthor.postAuthor}</div>
     }
 

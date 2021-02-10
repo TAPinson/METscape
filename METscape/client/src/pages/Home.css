@@ -1,0 +1,29 @@
+.search-controls {
+    background-color: rgb(55, 47, 45);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.searchButton {
+    width: 10%;
+    border: 1px solid;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-left: 1rem;
+    background-color: blanchedalmond;
+}
+
+#searchTerm {
+    width: 30%;
+    margin-right: 1rem;
+}
+
+.search-view-container {
+    background-color: rgb(55, 47, 45);
+  min-height: 61rem;
+  margin-top: -1rem;
+  padding-top: 1rem;
+}

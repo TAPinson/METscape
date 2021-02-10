@@ -20,7 +20,6 @@ const ExhibitCard = ({ exhibit }) => {
     }
 
     const ImageProvider = (exhibit) => {
-        console.log(exhibit.exhibit)
         if (exhibit.exhibit.primaryImage === "") {
             return (
                 <img src={placeholder} className="exhibit-card-image" alt="exhibit representation" />

@@ -35,16 +35,10 @@ export function ExhibitProvider(props) {
             .then((res) => res.json())
             .then((resp) => {
                 //This is where we will do the randomization
-                //But first we need to find a way to figure out if we can search these until we get 20 with photos somehow
-                //Randomness is working
-
-
                 // Random number in the length of the result objectIDs array
                 let randomTwenty = Math.floor(Math.random() * resp.objectIDs.length) + 1
                 let twentyBelow = randomTwenty - 20
                 let getTwenty = resp.objectIDs.slice(twentyBelow, randomTwenty)
-
-
                 let retrievedObjects = []
                 setExhibits([])
                 getTwenty.map((metObj) => {
@@ -57,6 +51,30 @@ export function ExhibitProvider(props) {
                         })
                 })
             })
+    }
+
+    const getExhibitsBySearch = (searchTerm) => {
+        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=${searchTerm}`)
+            .then((res) => res.json())
+            .then((resp) => {
+                //This is where we will do the randomization
+                // Random number in the length of the result objectIDs array
+                // let randomTwenty = Math.floor(Math.random() * resp.objectIDs.length) + 1
+                // let twentyBelow = randomTwenty - 20
+                let getTwenty = resp.objectIDs.slice(0, 40)
+                let retrievedObjects = []
+                setExhibits([])
+                getTwenty.map((metObj) => {
+                    exhibitsCompiler(metObj)
+                        .then((resp) => {
+                            if (!retrievedObjects.includes(resp)) {
+                                retrievedObjects.push(resp)
+                                setExhibits([...retrievedObjects])
+                            }
+                        })
+                })
+            })
+
     }
 
     const getPostExhibits = (posts) => {
@@ -89,7 +107,8 @@ export function ExhibitProvider(props) {
                 exhibits,
                 setExhibits,
                 exhibitsCompiler,
-                getPostExhibits
+                getPostExhibits,
+                getExhibitsBySearch
             }}
         >
             {props.children}
