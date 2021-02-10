@@ -96,6 +96,22 @@ const MyExhibitCard = ({ exhibit }) => {
         }
     }
 
+    const ArtistProvider = (exhibit) => {
+        console.log(exhibit.exhibit)
+        if (exhibit.exhibit.artistDisplayName === "") {
+            return null
+        }
+        else {
+            return (
+                <>
+                    Artist: {exhibit.exhibit.artistDisplayName} <br />
+                    {exhibit.exhibit.artistDisplayBio} <br />
+                    <br />
+                </>
+            )
+        }
+    }
+
     return (<>
         <div className="exhibit-card-container">
             <div className="exhibit-card">
@@ -104,9 +120,10 @@ const MyExhibitCard = ({ exhibit }) => {
                 </div>
                 <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
                 <div className="exhibit-card-details">
-                    Artist: {exhibit.artistDisplayName} <br />
+                    {/* Artist: {exhibit.artistDisplayName} <br />
                     {exhibit.artistDisplayBio} <br />
-                    <hr />
+                    <hr /> */}
+                    <ArtistProvider exhibit={exhibit} />
 
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />

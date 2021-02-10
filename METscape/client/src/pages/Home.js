@@ -1,12 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { PostContext } from "../providers/PostProvider";
+// import { PostContext } from "../providers/PostProvider";
 import { ExhibitContext } from "../providers/ExhibitProvider";
 import ExhibitCard from "../components/ExhibitCard"
 import "./Home.css"
 
 const Home = () => {
-    const { addPost, posts, setPosts } = useContext(PostContext);
+    // const { addPost, posts, setPosts } = useContext(PostContext);
     const { getExhibitsBySearch, exhibits, setExhibits } = useContext(ExhibitContext);
+
+    useEffect(() => {
+        setExhibits([])
+    }, []);
 
     let searchTermBuilder = {}
 
@@ -15,7 +19,6 @@ const Home = () => {
     }
 
     const sendSearch = () => {
-        console.log(searchTermBuilder.searchTerm)
         getExhibitsBySearch(searchTermBuilder.searchTerm)
     }
 
