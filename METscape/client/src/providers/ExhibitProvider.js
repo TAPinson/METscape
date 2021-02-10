@@ -86,6 +86,7 @@ export function ExhibitProvider(props) {
                     retrievedObjects.sort(function (a, b) {
                         return a.id - b.id;
                     });
+                    retrievedObjects.reverse()
                     setExhibits([...retrievedObjects])
                 })
         })
