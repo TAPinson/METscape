@@ -8,10 +8,6 @@ const Home = () => {
     const { addPost, posts, setPosts } = useContext(PostContext);
     const { getExhibitsBySearch, exhibits, setExhibits } = useContext(ExhibitContext);
 
-    useEffect(() => {
-
-    }, []);
-
     let searchTermBuilder = {}
 
     const handleSearchTermUpdate = (event) => {
@@ -22,8 +18,6 @@ const Home = () => {
         console.log(searchTermBuilder.searchTerm)
         getExhibitsBySearch(searchTermBuilder.searchTerm)
     }
-
-
 
     return (
         <>
