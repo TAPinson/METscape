@@ -57,7 +57,7 @@ const AppHeader = () => {
                             </NavItem>
                             <NavItem>
                                 <NavLink to="/myexhibits" tag={Link}>
-                                    My Exhibits
+                                    My Gallery
                                     </NavLink>
                             </NavItem>
                             <div className="navbar-spacer"></div>

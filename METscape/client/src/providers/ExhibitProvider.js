@@ -57,6 +57,9 @@ export function ExhibitProvider(props) {
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=${searchTerm}`)
             .then((res) => res.json())
             .then((resp) => {
+                if (resp.objectIDs === null) {
+                    return null
+                }
                 let getTwenty = resp.objectIDs.slice(0, 40)
                 let retrievedObjects = []
                 setExhibits([])
