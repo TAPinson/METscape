@@ -33,3 +33,8 @@
   .login-form .avatar img {
     width: 100%;
   }  
+
+  .login-background {
+    background-color: rgb(55, 47, 45);
+    min-height: 63.8rem;
+  }

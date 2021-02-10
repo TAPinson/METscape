@@ -36,8 +36,8 @@ export function PostProvider(props) {
             })
                 .then((res) => res.json())
                 .then((resp) => {
-                    setPosts(resp)
-                    return resp
+                    setPosts(resp.slice(0, 20))
+                    return resp.slice(0, 20)
                 })
         })
     }
