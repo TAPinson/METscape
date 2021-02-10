@@ -10,7 +10,8 @@
     margin-bottom: 2rem;
     background-color: rgb(191, 167, 127);
     padding-top: 1rem;
-    
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .exhibit-card-image {
