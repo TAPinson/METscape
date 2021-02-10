@@ -33,7 +33,6 @@ const ExhibitCard = ({ exhibit }) => {
     }
 
     const ArtistProvider = (exhibit) => {
-        console.log(exhibit.exhibit)
         if (exhibit.exhibit.artistDisplayName === "") {
             return null
         }
@@ -53,7 +52,6 @@ const ExhibitCard = ({ exhibit }) => {
             <div className="exhibit-card">
                 <h3> {exhibit.title} </h3>
                 <ImageProvider exhibit={exhibit} />
-
                 <div>
                     <ArtistProvider exhibit={exhibit} />
                     Department: {exhibit.department} <br />
@@ -64,7 +62,6 @@ const ExhibitCard = ({ exhibit }) => {
                         <h2>Conversation Starter:</h2>
                         <div className="modal-stuff">
                             <textarea className="modalInput" id="content" onChange={handleContentUpdate} />
-
                             <button className="modal-save-button" onClick={evt => {
                                 evt.preventDefault()
                                 postCreator()

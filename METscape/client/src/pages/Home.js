@@ -1,11 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
-// import { PostContext } from "../providers/PostProvider";
+import React, { useContext, useEffect } from "react";
 import { ExhibitContext } from "../providers/ExhibitProvider";
 import ExhibitCard from "../components/ExhibitCard"
 import "./Home.css"
 
 const Home = () => {
-    // const { addPost, posts, setPosts } = useContext(PostContext);
     const { getExhibitsBySearch, exhibits, setExhibits } = useContext(ExhibitContext);
 
     useEffect(() => {

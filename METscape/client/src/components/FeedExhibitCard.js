@@ -96,13 +96,13 @@ const FeedExhibitCard = ({ exhibit }) => {
             return null
         }
     }
+
     const removeComment = (id) => {
         deleteComment(id)
             .then(() => setToggle(toggle + 1))
     }
 
     const ArtistProvider = (exhibit) => {
-        console.log(exhibit.exhibit)
         if (exhibit.exhibit.artistDisplayName === "") {
             return null
         }
@@ -124,9 +124,6 @@ const FeedExhibitCard = ({ exhibit }) => {
                     <h3> {exhibit.title} </h3>
                     <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
                     <div>
-                        {/* Artist: {exhibit.artistDisplayName} <br />
-                        {exhibit.artistDisplayBio} <br />
-                        <hr /> */}
                         <ArtistProvider exhibit={exhibit} />
                         Department: {exhibit.department} <br />
                         Dimensions: {exhibit.dimensions} <br />

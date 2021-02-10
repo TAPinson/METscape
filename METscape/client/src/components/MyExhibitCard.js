@@ -97,7 +97,6 @@ const MyExhibitCard = ({ exhibit }) => {
     }
 
     const ArtistProvider = (exhibit) => {
-        console.log(exhibit.exhibit)
         if (exhibit.exhibit.artistDisplayName === "") {
             return null
         }
@@ -120,11 +119,7 @@ const MyExhibitCard = ({ exhibit }) => {
                 </div>
                 <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
                 <div className="exhibit-card-details">
-                    {/* Artist: {exhibit.artistDisplayName} <br />
-                    {exhibit.artistDisplayBio} <br />
-                    <hr /> */}
                     <ArtistProvider exhibit={exhibit} />
-
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />
                     Medium: {exhibit.medium} <br />
