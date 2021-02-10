@@ -9,11 +9,11 @@
 
 .searchButton {
     width: 10%;
-    border: 1px solid;
     border-radius: 12px;
     cursor: pointer;
     margin-left: 1rem;
-    background-color: blanchedalmond;
+    background-color: rgb(191, 167, 127);
+    font-weight: 600;
 }
 
 #searchTerm {
