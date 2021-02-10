@@ -123,7 +123,7 @@ const FeedExhibitCard = ({ exhibit }) => {
                 <div className="exhibit-card">
                     <h3> {exhibit.title} </h3>
                     <img src={exhibit.primaryImage} className="exhibit-card-image" alt="exhibit representation" />
-                    <div>
+                    <div className="exhibit-card-details">
                         <ArtistProvider exhibit={exhibit} />
                         Department: {exhibit.department} <br />
                         Dimensions: {exhibit.dimensions} <br />

@@ -5,15 +5,16 @@
 }
 
 .exhibit-card {
-    border: 1px solid;
-    width: 50%;
+    border-radius: 12px;
+    width: 60%;
     margin-bottom: 2rem;
-    background-color: rgb(200, 199, 181);
+    background-color: rgb(191, 167, 127);
+    padding-top: 1rem;
     
 }
 
 .exhibit-card-image {
-    width: 20em;
+    width: 30em;
 }
 
 .exhibit-card-details {
@@ -22,12 +23,25 @@
 }
 
 .post-this-button {
+    text-align: center;
+    width: 20%;
+    border: 1px solid;
+    border-radius: 12px;
+    margin: 1rem;
+    background-color: blanchedalmond;
+    cursor: pointer;
+    float: right;
+}
+
+.browser-post-this-button {
+    text-align: center;
     width: 15%;
     border: 1px solid;
     border-radius: 12px;
     margin: 1rem;
     background-color: blanchedalmond;
     cursor: pointer;
+    float: right;
 }
 
 .postModal {
