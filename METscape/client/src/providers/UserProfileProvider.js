@@ -25,7 +25,6 @@ export function UserProfileProvider(props) {
             .signInWithEmailAndPassword(email, pw)
             .then((signInResponse) => getUserProfile(signInResponse.user.uid))
             .then((userProfile) => {
-                console.log(userProfile)
                 if (userProfile) {
                     localStorage.setItem("userProfile", JSON.stringify(userProfile));
                     setIsLoggedIn(true);
