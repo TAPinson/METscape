@@ -26,10 +26,11 @@
 .post-this-button {
     text-align: center;
     width: 20%;
-    border: 1px solid;
+
     border-radius: 12px;
     margin: 1rem;
-    background-color: blanchedalmond;
+    color: rgb(191, 167, 127);
+    background-color: rgb(55, 47, 45);
     cursor: pointer;
     float: right;
 }
@@ -37,10 +38,11 @@
 .browser-post-this-button {
     text-align: center;
     width: 15%;
-    border: 1px solid;
     border-radius: 12px;
     margin: 1rem;
-    background-color: blanchedalmond;
+    color: rgb(191, 167, 127);
+    background-color: rgb(55, 47, 45);
+    font-weight: 600;
     cursor: pointer;
     float: right;
 }

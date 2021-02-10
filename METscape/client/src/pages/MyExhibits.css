@@ -35,17 +35,20 @@
     border-radius: 12px;
     padding: 0.5rem;
     cursor: pointer;
-    background-color: blanchedalmond;
+    color: rgb(200, 199, 181);
+    background-color: rgb(55, 47, 45);
+    font-weight: 600;
     margin-left: -9rem;
 }
 
 .delete-post-button {
     width: 10%;
-    border: 1px solid;
     border-radius: 12px;
     float: right;
     margin-right: 1rem;
     margin-top: 1rem;
-    background-color: blanchedalmond;
+    color: rgb(200, 199, 181);
+    background-color: rgb(55, 47, 45);
+    font-weight: 600;
     cursor: pointer;
 }

@@ -54,7 +54,7 @@ const FriendManager = () => {
     }
 
     return (
-        <div className="view-container">
+        <div className="friends-view-container">
             <h2>Users</h2>
             <div className="user-card-container">
                 {users.map((user) => {

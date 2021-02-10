@@ -15,7 +15,7 @@ const DepartmentFeed = () => {
 
     return (
         <div className="view-container">
-            <div className="department-feed-more-button" onClick={() => setToggle(toggle + 1)}>More In This Category</div>
+            <div className="department-feed-more-button top-button" onClick={() => setToggle(toggle + 1)}>More In This Category</div>
             {
 
                 exhibits.map((exhibitObj) => {
