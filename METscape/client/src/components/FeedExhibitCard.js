@@ -39,10 +39,15 @@ const FeedExhibitCard = ({ exhibit }) => {
         if (linkedContent === undefined) {
             return null
         }
+
+        linkedContent.year = linkedContent.dateCreated.slice(0, 4)
+        linkedContent.month = linkedContent.dateCreated.slice(5, 7)
+        linkedContent.day = linkedContent.dateCreated.slice(8, 10)
+
         return (
             <div className="initial-comment">
                 <div>{linkedContent.content}</div>
-                <div>{linkedContent.postAuthor} - {linkedContent.dateCreated}</div>
+                <div>{linkedContent.postAuthor} - {linkedContent.month}/{linkedContent.day}/{linkedContent.year}</div>
             </div>
         )
     }
@@ -152,9 +157,12 @@ const FeedExhibitCard = ({ exhibit }) => {
             <div className="comment-container">
                 <InitialComment objectID={exhibit.objectID} />
                 {comments.map((comment) => {
+                    comment.year = comment.dateCreated.slice(0, 4)
+                    comment.month = comment.dateCreated.slice(5, 7)
+                    comment.day = comment.dateCreated.slice(8, 10)
                     return <div key={comment.id} className="initial-comment">
                         <div>{comment.content}</div>
-                        <div>{comment.commentAuthor} - {comment.dateCreated}</div>
+                        <div>{comment.commentAuthor} - {comment.month}/{comment.day}/{comment.year}</div>
                         <div className="myexhibits-comment-controls">
                             <DeleteButton comment={comment} />
                             <CommentEditButton comment={comment} />
