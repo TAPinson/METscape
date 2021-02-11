@@ -31,7 +31,7 @@ const MyExhibits = () => {
                 return (
                     <div key={exhibit.objectID} className="my-exhibits-container">
                         <div>
-                            <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>Delete Post</div>
+                            <div className="delete-post-button" onClick={() => removePost(exhibit.objectID)}>Remove</div>
                         </div>
                         <MyExhibitCard exhibit={exhibit} />
                     </div>

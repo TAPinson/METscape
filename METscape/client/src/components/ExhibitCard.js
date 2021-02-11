@@ -57,7 +57,7 @@ const ExhibitCard = ({ exhibit }) => {
                     Department: {exhibit.department} <br />
                     Dimensions: {exhibit.dimensions} <br />
                     Medium: {exhibit.medium} <br />
-                    <div className="browser-post-this-button" onClick={() => setModalIsOpen(true)}>Post This</div>
+                    <div className="browser-post-this-button" onClick={() => setModalIsOpen(true)}>Add to Gallery</div>
                     <Modal className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                         <h2>Conversation Starter:</h2>
                         <div className="modal-stuff">

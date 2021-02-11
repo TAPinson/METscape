@@ -133,7 +133,7 @@ const FeedExhibitCard = ({ exhibit }) => {
                         Department: {exhibit.department} <br />
                         Dimensions: {exhibit.dimensions} <br />
                         Medium: {exhibit.medium} <br />
-                        <div className="post-this-button" onClick={() => setModalIsOpen(true)}>Post This</div>
+                        <div className="post-this-button" onClick={() => setModalIsOpen(true)}>Add to Gallery</div>
 
                         <Modal className="postModal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                             <h2>Post Message</h2>
