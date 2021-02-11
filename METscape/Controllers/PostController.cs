@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace METscape.Controllers
@@ -17,11 +18,13 @@ namespace METscape.Controllers
     {
         private IPostRepository _postRepo;
         private ICommentRepository _commentRepo;
+        private IUserProfileRepository _userRepo;
 
-        public PostController(IPostRepository postRepo, ICommentRepository commentRepo)
+        public PostController(IPostRepository postRepo, ICommentRepository commentRepo, IUserProfileRepository userRepo)
         {
             _postRepo = postRepo;
             _commentRepo = commentRepo;
+            _userRepo = userRepo;
         }
 
         [HttpGet("{id}")]
@@ -55,6 +58,10 @@ namespace METscape.Controllers
         [HttpPost]
         public IActionResult AddPost(Post post)
         {
+            if (post.UserProfileId != GetCurrentUserProfile().Id)
+            {
+                return BadRequest();
+            }
             _postRepo.Add(post);
             return Ok();
         }
@@ -73,6 +80,12 @@ namespace METscape.Controllers
             _postRepo.UpdatePost(post);
             return Ok(post);
 
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepo.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }
