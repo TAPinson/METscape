@@ -26,6 +26,18 @@ export function PostProvider(props) {
         });
     }
 
+    const getMyPosts = (id) => {
+        return getToken().then((token) => {
+            return fetch(`${apiUrl}/userposts/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then((res) => res.json())
+        });
+    }
+
     const getFriendsPosts = (id) => {
         return getToken().then((token) => {
             return fetch(`${apiUrl}/friendposts/${id}`, {
@@ -44,17 +56,32 @@ export function PostProvider(props) {
 
     const addPost = (post) => {
         const userId = JSON.parse(localStorage.getItem('userProfile')).id;
-        post.userProfileId = userId
-        getToken().then((token) => {
-            return fetch(`${apiUrl}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify(post)
+        getMyPosts(userId)
+            .then((res) => {
+                let myPostChecker = []
+                res.map((singlePost) => {
+                    if (singlePost.metId === post.metId) {
+
+                        myPostChecker.push(singlePost)
+                    }
+                })
+                if (myPostChecker.length > 0) {
+                    alert("You've already added this!")
+                }
+                if (myPostChecker.length === 0) {
+                    post.userProfileId = userId
+                    getToken().then((token) => {
+                        return fetch(`${apiUrl}`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${token}`
+                            },
+                            body: JSON.stringify(post)
+                        })
+                    })
+                }
             })
-        })
     }
 
     const deletePost = (id) => {
