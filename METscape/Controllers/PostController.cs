@@ -69,6 +69,13 @@ namespace METscape.Controllers
         [HttpDelete("delete/{id}")]
         public IActionResult DeletePost(int id)
         {
+            var endangeredPost = _postRepo.GetPostById(id);
+
+            if (endangeredPost.UserProfileId != GetCurrentUserProfile().Id)
+            {
+                return BadRequest();
+            }
+
             _commentRepo.DeleteByPost(id);
             _postRepo.Delete(id);
             return Ok();
@@ -77,9 +84,13 @@ namespace METscape.Controllers
         [HttpPut("update/{id}")]
         public IActionResult EditPost(int id, Post post)
         {
+            if (post.UserProfileId != GetCurrentUserProfile().Id)
+            {
+                return BadRequest();
+            }
+
             _postRepo.UpdatePost(post);
             return Ok(post);
-
         }
 
         private UserProfile GetCurrentUserProfile()

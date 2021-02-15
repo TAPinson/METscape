@@ -27,7 +27,6 @@ const FriendManager = () => {
         deleteFriendship(id)
         const toggle = toggler + 1
         setToggler(toggle)
-
     }
 
     const AddFriendButton = (user) => {
