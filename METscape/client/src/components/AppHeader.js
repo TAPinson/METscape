@@ -45,7 +45,7 @@ const AppHeader = () => {
             <Nav navbar>
                 {user ? (
                     <>
-                        <div class="navbar-spacer">
+                        <div className="navbar-spacer">
                             <NavItem>
                                 <NavLink to="/myfeed" tag={Link}>
                                     My Feed
