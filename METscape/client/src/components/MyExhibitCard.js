@@ -66,7 +66,9 @@ const MyExhibitCard = ({ exhibit }) => {
         })
         newComment.postId = linkedContent.id
         addComment(newComment)
-            .then(setToggle(toggle + 1))
+            .then(() => {
+                setToggle(toggle + 1)
+            })
     }
 
     const CommentContainer = (objectID) => {
@@ -81,7 +83,9 @@ const MyExhibitCard = ({ exhibit }) => {
     // Delete Comment Code
     const removeComment = (id) => {
         deleteComment(id)
-            .then(setToggle(toggle + 1))
+            .then(() => {
+                setToggle(toggle + 1)
+            })
     }
 
     const DeleteButton = (comment) => {

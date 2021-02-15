@@ -36,5 +36,4 @@ a, .navbar-text {
 
 .navbar-right-side {
   display: flex;
-  flex-wrap: nowrap;
 }
