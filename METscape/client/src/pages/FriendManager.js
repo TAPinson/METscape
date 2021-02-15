@@ -19,14 +19,18 @@ const FriendManager = () => {
             isApproved: 1
         }
         addFriendship(newFriend)
-        const toggle = toggler + 1
-        setToggler(toggle)
+            .then(() => {
+                const toggle = toggler + 1
+                setToggler(toggle)
+            })
     }
 
     const removeFriend = (id) => {
         deleteFriendship(id)
-        const toggle = toggler + 1
-        setToggler(toggle)
+            .then(() => {
+                const toggle = toggler + 1
+                setToggler(toggle)
+            })
     }
 
     const AddFriendButton = (user) => {
