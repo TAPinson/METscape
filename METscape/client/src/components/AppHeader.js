@@ -66,14 +66,16 @@ const AppHeader = () => {
                                     Friends
                                     </NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="pointer" onClick={logoutAndReturn}>
-                                    Logout
+                            <div className="navbar-right-side">
+                                <NavItem>
+                                    <NavLink className="pointer" onClick={logoutAndReturn}>
+                                        Logout
                                     </NavLink>
-                            </NavItem>
-                            <NavbarText>
-                                Welcome {user.userName}!
+                                </NavItem>
+                                <NavbarText>
+                                    Welcome {user.userName}!
                             </NavbarText>
+                            </div>
                         </div>
                     </>
                 ) : (

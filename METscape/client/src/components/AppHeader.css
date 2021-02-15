@@ -20,6 +20,7 @@
 a, .navbar-text {
   font-weight: 600;
    color:rgb(55, 47, 45) !important;
+   margin-left: 2rem;
 }
 
 .site-logo-img {
@@ -30,6 +31,9 @@ a, .navbar-text {
 
 .navbar {
   width: 100%;
-  
-  
+}
+
+.navbar-right-side {
+  display: flex;
+  flex-wrap: nowrap;
 }
