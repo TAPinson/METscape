@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace METscape.Controllers
@@ -16,10 +17,12 @@ namespace METscape.Controllers
     public class CommentController : ControllerBase
     {
         private ICommentRepository _commentRepo;
+        private IUserProfileRepository _userRepo;
 
-        public CommentController(ICommentRepository commentRepo)
+        public CommentController(ICommentRepository commentRepo, IUserProfileRepository userRepo)
         {
             _commentRepo = commentRepo;
+            _userRepo = userRepo;
         }
 
         [HttpGet("bypost/{id}")]
@@ -35,6 +38,10 @@ namespace METscape.Controllers
         [HttpPost]
         public IActionResult AddComment(Comment comment)
         {
+            if (comment.UserProfileId != GetCurrentUserProfile().Id)
+            {
+                return BadRequest();
+            }
             _commentRepo.Add(comment);
             return Ok();
         }
@@ -42,6 +49,11 @@ namespace METscape.Controllers
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteComment(int id)
         {
+            var endangeredComment = _commentRepo.GetCommentById(id);
+            if (endangeredComment.UserProfileId != GetCurrentUserProfile().Id)
+            {
+                return BadRequest();
+            }
             _commentRepo.Delete(id);
             return Ok();
         }
@@ -53,8 +65,20 @@ namespace METscape.Controllers
             {
                 return BadRequest();
             }
+
+            if (comment.UserProfileId != GetCurrentUserProfile().Id)
+            {
+                return BadRequest();
+            }
+
             _commentRepo.UpdateComment(comment);
             return Ok();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepo.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

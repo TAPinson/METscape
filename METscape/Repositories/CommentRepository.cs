@@ -121,5 +121,40 @@ namespace METscape.Repositories
                 }
             }
         }
+
+        public Comment GetCommentById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT Id, PostId, Content, UserProfileId, DateCreated
+                    FROM Comment
+                    WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        Comment comment = new Comment
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            PostId = reader.GetInt32(reader.GetOrdinal("PostId")),
+                            Content = reader.GetString(reader.GetOrdinal("Content")),
+                            UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileID")),
+                            DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated"))
+                        };
+                        reader.Close();
+                        return comment;
+                    }
+                    else
+                    {
+                        reader.Close();
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }
