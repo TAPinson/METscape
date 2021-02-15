@@ -30,21 +30,22 @@ const AppHeader = () => {
     };
 
     return (
-        <div>
-            <Navbar dark expand="md">
-                <NavbarBrand tag={Link} to="/">
-                    <img
-                        id="header-logo"
-                        src={logo}
-                        height="120"
-                        className="mr-2 site-logo-img"
-                        alt="Logo"
-                    />
-                </NavbarBrand>
-                <NavbarToggler onClick={toggle} />
-                <Nav className="ml-auto" navbar>
-                    {user ? (
-                        <>
+
+        <Navbar dark expand="md">
+            <NavbarBrand tag={Link} to="/">
+                <img
+                    id="header-logo"
+                    src={logo}
+                    height="120"
+                    className="mr-2 site-logo-img"
+                    alt="Logo"
+                />
+            </NavbarBrand>
+            <NavbarToggler onClick={toggle} />
+            <Nav navbar>
+                {user ? (
+                    <>
+                        <div class="navbar-spacer">
                             <NavItem>
                                 <NavLink to="/myfeed" tag={Link}>
                                     My Feed
@@ -60,7 +61,6 @@ const AppHeader = () => {
                                     My Gallery
                                     </NavLink>
                             </NavItem>
-                            <div className="navbar-spacer"></div>
                             <NavItem>
                                 <NavLink to="/friends" tag={Link}>
                                     Friends
@@ -74,24 +74,25 @@ const AppHeader = () => {
                             <NavbarText>
                                 Welcome {user.userName}!
                             </NavbarText>
+                        </div>
+                    </>
+                ) : (
+                        <>
+                            <NavItem>
+                                <NavLink to="/login" tag={Link}>
+                                    Login
+                                        </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink to="/register" tag={Link}>
+                                    Register
+                                        </NavLink>
+                            </NavItem>
                         </>
-                    ) : (
-                            <>
-                                <NavItem>
-                                    <NavLink to="/login" tag={Link}>
-                                        Login
-                                        </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink to="/register" tag={Link}>
-                                        Register
-                                        </NavLink>
-                                </NavItem>
-                            </>
-                        )}
-                </Nav>
-            </Navbar>
-        </div>
+                    )}
+            </Nav>
+        </Navbar>
+
     );
 };
 

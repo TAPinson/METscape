@@ -2,16 +2,19 @@
     cursor: pointer;
   }
 
-.navbar-nav > li{
-  margin-right:5rem;
+.navbar-nav {
+  width: 100%;
 }
 
 .navbar-spacer {
-    width: 50rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .navbar {
   background-color: rgb(191, 167, 127);
+  
 }
 
 a, .navbar-text {
@@ -23,4 +26,10 @@ a, .navbar-text {
   margin-top: -4rem;
   margin-bottom: -4rem;
   margin-left: -2rem;
+}
+
+.navbar {
+  width: 100%;
+  
+  
 }

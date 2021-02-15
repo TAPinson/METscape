@@ -12,10 +12,11 @@
     padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    overflow: hidden;
 }
 
 .exhibit-card-image {
-    width: 30em;
+    max-width: 30em;
 }
 
 .exhibit-card-details {
